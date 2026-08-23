@@ -84,6 +84,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   top: 1rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ── Typography helpers ──────────────────────────────── */
 h1, h2, h3,
 .section-title,
@@ -373,8 +385,7 @@ body.menu-open .nav-backdrop {
   min-width: 0;
 }
 
-.hero-text,
-.hero-canvas-wrap {
+.hero-text {
   min-width: 0;
   max-width: 100%;
 }
@@ -678,21 +689,6 @@ body.menu-open .nav-backdrop {
 .prod-img-olive  { background: linear-gradient(160deg, #C8D8A0 0%, #8AAA58 100%); }
 .prod-img-dark   { background: linear-gradient(160deg, #3a3028 0%, #1e180f 100%); }
 
-/* ── Cup Mockup SVG ──────────────────────────────── */
-.cup-mockup {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px 12px 6px;
-}
-.cup-mockup svg {
-  width: 70%;
-  max-width: 145px;
-  height: auto;
-}
-
 .prod-size {
   display: inline-block;
   padding: 2px 9px;
@@ -875,11 +871,32 @@ body.menu-open .nav-backdrop {
   border-radius: var(--radius-sm);
 }
 
-.form-note {
-  font-size: .75rem;
-  color: var(--gray-400);
+.form-input.is-invalid {
+  border-color: #c0392b;
+}
+
+.form-error {
+  font-size: .8rem;
+  color: #c0392b;
+  margin-top: .35rem;
+}
+
+.form-status {
+  font-size: .85rem;
+  color: var(--bark-soft);
   margin-top: .7rem;
   text-align: center;
+  min-height: 1.2em;
+}
+
+/* Honeypot — off-screen and unreachable by keyboard/AT, never shown to real users */
+.form-hp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Map */
@@ -935,6 +952,15 @@ body.menu-open .nav-backdrop {
   color: rgba(244,239,224,.45);
 }
 
+.footer-legal-link {
+  font-size: .8rem;
+  color: rgba(244,239,224,.45);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+.footer-legal-link:hover { color: var(--cream); }
+
 .footer-socials {
   display: flex;
   gap: 1rem;
@@ -945,6 +971,43 @@ body.menu-open .nav-backdrop {
   transition: color var(--transition);
 }
 .footer-socials a:hover { color: var(--cream); }
+
+/* ── Legal pages (privacy.html) ──────────────────────── */
+.legal-page {
+  padding: calc(var(--nav-h) + 3rem) 0 5rem;
+  background: var(--cream);
+}
+
+.legal-container {
+  max-width: 720px;
+}
+
+.legal-title {
+  margin: .6rem 0 .5rem;
+}
+
+.legal-updated {
+  font-size: .85rem;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+}
+
+.legal-h2 {
+  font-family: var(--ff-head);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--bark);
+  margin: 2.2rem 0 .8rem;
+}
+
+.legal-p {
+  color: var(--bark-soft);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.legal-p a { color: var(--olive); text-decoration: underline; text-underline-offset: 2px; }
+.legal-p a:hover { color: var(--olive-light); }
 
 /* ── Product cards — clickable cursor ────────────────── */
 .prod-card {
@@ -1096,8 +1159,8 @@ body.menu-open .nav-backdrop {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
-    max-width: none;
-    margin: 0;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 0 85px;
   }
 
@@ -1114,8 +1177,8 @@ body.menu-open .nav-backdrop {
   }
 
   .hero-inner {
-    max-width: none;
-    margin: 0;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 3.5rem 85px;
     gap: 2.5rem;
   }

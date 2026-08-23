@@ -2,7 +2,6 @@
    gotte.eco — main.js
    • EN / SQ language switcher
    • Marquee / ticker builder
-   • Three.js 3D paper-cup hero
    • Count-up on scroll (IntersectionObserver)
    • Contact form (Formspree)
    • Sticky nav + hamburger
@@ -40,6 +39,9 @@ const T = {
     stat2_label: 'Happy clients',
     stat3_label: 'Avg. turnaround',
 
+    clients_label: 'Trusted by',
+    clients_aria:  'Our clients',
+
     prod_label: 'Our products',
     prod_title: 'Custom cups for every occasion',
 
@@ -57,7 +59,6 @@ const T = {
     p4_long: 'Our flagship XL double-wall cup for bold brand statements. The sleek dark finish creates a premium look that elevates any brand. Perfect for large lattes, cold brews, and smoothies. Our best-selling size — and our customers\' favourite.',
 
     bestseller: 'Best seller',
-    photo_ph:   'Product photo',
 
     ct_label:     'Get in touch',
     ct_title:     'Let\'s create something together',
@@ -65,13 +66,39 @@ const T = {
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
     ct_hours:     'Mon – Fri · 9:00 – 18:00',
 
-    form_title: 'Send us a message',
-    form_name:  'Your name',
-    form_msg:   'Tell us about your project...',
-    form_btn:   'Send message',
-    form_note:  '* Connect Formspree by replacing YOUR_FORM_ID in index.html',
+    form_title:    'Send us a message',
+    form_name:     'Your name',
+    form_email:    'Email address',
+    form_msg:      'Tell us about your project...',
+    form_btn:      'Send message',
+    form_btn_sent: 'Sent ✓',
+    form_btn_err:  'Error — try again',
+    err_name:      'Please enter your name.',
+    err_email:     'Please enter a valid email address.',
+    err_msg:       'Please enter a message.',
+    sent_ok:       'Message sent — we\'ll be in touch soon.',
+    sent_err:      'Something went wrong. Please try again or email us directly.',
 
-    footer_copy: '© 2026 gotte.eco · All rights reserved',
+    footer_copy:    '© 2026 gotte.eco · All rights reserved',
+    footer_privacy: 'Privacy Policy',
+    footer_back:    'Back to home',
+
+    privacy_label:            'Legal',
+    privacy_title:            'Privacy Policy',
+    privacy_updated:          'Last updated: 23 August 2026',
+    privacy_intro:            'This policy explains what information gotte.eco collects when you use this website, and how it\'s used. We keep this simple: we only collect what\'s needed to respond to your enquiries.',
+    privacy_collect_title:    'Information we collect',
+    privacy_collect_body:     'When you submit our contact form, we collect the name, email address, and message you provide. We don\'t collect any other personal information through this site, and we don\'t use tracking cookies or analytics scripts.',
+    privacy_use_title:        'How we use it',
+    privacy_use_body:         'We use the information you submit only to respond to your enquiry — for example, to give you a quote or answer a question about our products. We don\'t sell, rent, or share your information with third parties for marketing purposes.',
+    privacy_thirdparty_title: 'Third-party services',
+    privacy_thirdparty_body:  'Our contact form is processed by Formspree, a third-party form service. This page also loads Google Fonts and embeds a Google Map, both of which may load resources from Google\'s servers.',
+    privacy_retention_title:  'Data retention',
+    privacy_retention_body:   'We keep contact form submissions only as long as needed to respond to your enquiry, unless you become a customer, in which case we retain what\'s needed for that business relationship.',
+    privacy_rights_title:     'Your rights',
+    privacy_rights_body:      'You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, at any time — just email us using the address below.',
+    privacy_contact_title:    'Contact us',
+    privacy_contact_body:     'Questions about this policy or your data? Email us at',
 
     ticker: [
       { icon: 'ti-leaf',      text: 'Full Custom Print'   },
@@ -111,6 +138,9 @@ const T = {
     stat2_label: 'Klientë të kënaqur',
     stat3_label: 'Koha mesatare e dërgimit',
 
+    clients_label: 'Na besojnë',
+    clients_aria:  'Klientët tanë',
+
     prod_label: 'Produktet tona',
     prod_title: 'Gota me porosi për çdo rast',
 
@@ -128,7 +158,6 @@ const T = {
     p4_long: 'Gota jonë kryesore XL me mur të dyfishtë për deklarata të guximshme marke. Finishi elegant i errët krijon një pamje premium që ngre çdo markë. Perfekte për latte të mëdha, cold brew dhe smoothie. Madhësia jonë më e shitur — dhe e preferuara e klientëve.',
 
     bestseller: 'Më e shitur',
-    photo_ph:   'Foto produkti',
 
     ct_label:     'Na kontaktoni',
     ct_title:     'Le të krijojmë diçka së bashku',
@@ -136,13 +165,39 @@ const T = {
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
     ct_hours:     'Hëne – Shtunë · 9:00 – 18:00',
 
-    form_title: 'Na dërgoni mesazh',
-    form_name:  'Emri juaj',
-    form_msg:   'Na tregoni për projektin tuaj...',
-    form_btn:   'Dërgo mesazhin',
-    form_note:  '* Lidhni Formspree duke zëvendësuar YOUR_FORM_ID në index.html',
+    form_title:    'Na dërgoni mesazh',
+    form_name:     'Emri juaj',
+    form_email:    'Adresa e emailit',
+    form_msg:      'Na tregoni për projektin tuaj...',
+    form_btn:      'Dërgo mesazhin',
+    form_btn_sent: 'U dërgua ✓',
+    form_btn_err:  'Gabim — riprovo',
+    err_name:      'Ju lutem shënoni emrin tuaj.',
+    err_email:     'Ju lutem shënoni një adresë email të vlefshme.',
+    err_msg:       'Ju lutem shkruani një mesazh.',
+    sent_ok:       'Mesazhi u dërgua — do t\'ju kontaktojmë së shpejti.',
+    sent_err:      'Diçka shkoi keq. Ju lutem provoni përsëri ose na shkruani direkt.',
 
-    footer_copy: '© 2026 gotte.eco · Të gjitha të drejtat e rezervuara',
+    footer_copy:    '© 2026 gotte.eco · Të gjitha të drejtat e rezervuara',
+    footer_privacy: 'Politika e Privatësisë',
+    footer_back:    'Kthehu në kryefaqe',
+
+    privacy_label:            'Ligjore',
+    privacy_title:            'Politika e Privatësisë',
+    privacy_updated:          'Përditësuar më: 23 gusht 2026',
+    privacy_intro:            'Kjo politikë shpjegon çfarë informacioni mbledh gotte.eco kur përdorni këtë faqe interneti, dhe si përdoret. E mbajmë të thjeshtë: mbledhim vetëm atë që na duhet për t\'iu përgjigjur kërkesave tuaja.',
+    privacy_collect_title:    'Informacioni që mbledhim',
+    privacy_collect_body:     'Kur dërgoni formularin tonë të kontaktit, mbledhim emrin, adresën e emailit dhe mesazhin që na jepni. Nuk mbledhim asnjë informacion tjetër personal përmes kësaj faqeje, dhe nuk përdorim cookies gjurmuese apo skripte analitike.',
+    privacy_use_title:        'Si e përdorim',
+    privacy_use_body:         'Informacionin që dërgoni e përdorim vetëm për t\'iu përgjigjur kërkesës suaj — për shembull, për t\'ju dhënë një ofertë ose për t\'iu përgjigjur një pyetjeje rreth produkteve tona. Nuk e shesim, japim me qira, apo ndajmë informacionin tuaj me palë të treta për qëllime marketingu.',
+    privacy_thirdparty_title: 'Shërbimet e palëve të treta',
+    privacy_thirdparty_body:  'Formulari ynë i kontaktit përpunohet nga Formspree, një shërbim formularësh i palës së tretë. Kjo faqe gjithashtu ngarkon Google Fonts dhe përfshin një hartë të Google, të cilat mund të ngarkojnë burime nga serverët e Google.',
+    privacy_retention_title:  'Ruajtja e të dhënave',
+    privacy_retention_body:   'I ruajmë mesazhet e formularit të kontaktit vetëm sa kohë që nevojitet për t\'iu përgjigjur kërkesës suaj, përveç nëse bëheni klient, në atë rast ruajmë atë që nevojitet për atë marrëdhënie biznesi.',
+    privacy_rights_title:     'Të drejtat tuaja',
+    privacy_rights_body:      'Mund të na pyesni çfarë informacioni ruajmë për ju, të na kërkoni ta korrigjojmë, apo ta fshijmë, në çdo kohë — thjesht na shkruani në adresën më poshtë.',
+    privacy_contact_title:    'Na kontaktoni',
+    privacy_contact_body:     'Pyetje rreth kësaj politike apo të dhënave tuaja? Na shkruani në',
 
     ticker: [
       { icon: 'ti-leaf',        text: 'Printim i Plotë'          },
@@ -184,6 +239,14 @@ function applyLang(lang) {
     const key = el.dataset.placeholderKey;
     if (dict[key] !== undefined) {
       el.placeholder = dict[key];
+    }
+  });
+
+  // Update aria-label-keyed elements
+  document.querySelectorAll('[data-key-aria]').forEach(el => {
+    const key = el.dataset.keyAria;
+    if (dict[key] !== undefined) {
+      el.setAttribute('aria-label', dict[key]);
     }
   });
 
@@ -263,327 +326,6 @@ function buildMarquee() {
 }
 
 /* ──────────────────────────────────────────────────────
-   4.  THREE.JS 3D CUP
-────────────────────────────────────────────────────── */
-function initCup() {
-  const canvas = document.getElementById('hero-canvas');
-  if (!canvas || typeof THREE === 'undefined') return;
-
-  const wrap = canvas.parentElement;
-  let W = wrap.clientWidth;
-  let H = wrap.clientHeight;
-
-  // ── Renderer
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(W, H);
-
-  // ── Scene & Camera
-  const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
-  camera.position.set(0, 0.2, 5.4);
-
-  // ── Lights
-  scene.add(new THREE.AmbientLight(0xfff5e0, 0.8));
-
-  const sun = new THREE.DirectionalLight(0xfffaf0, 2.2);
-  sun.position.set(4, 6, 5);
-  scene.add(sun);
-
-  const fill = new THREE.PointLight(0xb0d070, 0.7, 18);
-  fill.position.set(-3, 2, 3);
-  scene.add(fill);
-
-  const backLight = new THREE.PointLight(0xffe0a0, 0.4, 12);
-  backLight.position.set(2, -3, -3);
-  scene.add(backLight);
-
-  // ── Canvas texture — "Gotte" printed on the cup body
-  const texCanvas = document.createElement('canvas');
-  texCanvas.width  = 1024;
-  texCanvas.height = 1024;
-  const ctx = texCanvas.getContext('2d');
-
-  // Cream body background
-  ctx.fillStyle = '#f4efe0';
-  ctx.fillRect(0, 0, 1024, 1024);
-
-  // Olive top band
-  ctx.fillStyle = '#5c6e2e';
-  ctx.fillRect(0, 0, 1024, 160);
-
-  // Subtle diagonal grain lines
-  ctx.strokeStyle = 'rgba(92,110,46,0.06)';
-  ctx.lineWidth = 2;
-  for (let i = -1024; i < 2048; i += 36) {
-    ctx.beginPath();
-    ctx.moveTo(i, 160);
-    ctx.lineTo(i + 864, 1024);
-    ctx.stroke();
-  }
-
-  // Wood accent stripe near bottom
-  ctx.fillStyle = '#a0784a';
-  ctx.fillRect(0, 910, 1024, 38);
-
-  // Thin olive line above wood stripe
-  ctx.fillStyle = '#5c6e2e';
-  ctx.fillRect(0, 872, 1024, 16);
-
-  const bodyTexture = new THREE.CanvasTexture(texCanvas);
-
-  // Load Gotte logo onto the cup texture (replaces text)
-  const logoImg = new Image();
-  logoImg.onload = () => {
-    // Draw the logo centred in the cream body area
-    const lw = 340, lh = Math.round(lw * (logoImg.naturalHeight / logoImg.naturalWidth));
-    const lx = 580 - lw / 2;
-    const ly = 440;
-    ctx.save();
-    ctx.globalCompositeOperation = 'multiply'; // blends black bg with cream
-    ctx.drawImage(logoImg, lx, ly, lw, lh);
-    ctx.restore();
-    bodyTexture.needsUpdate = true;
-  };
-  logoImg.onerror = () => {
-    // Fallback: draw text if logo not found
-    ctx.fillStyle = '#2c2015';
-    ctx.font = '800 112px Montserrat, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'alphabetic';
-    ctx.fillText('Gotte', 580, 600);
-    ctx.fillStyle = '#5c6e2e';
-    ctx.font = '400 38px Montserrat, sans-serif';
-    ctx.fillText('✦', 580, 455);
-    bodyTexture.needsUpdate = true;
-  };
-  logoImg.src = 'images/gotte_logo.png';
-
-  // ── Materials
-  const matBody = new THREE.MeshStandardMaterial({
-    map:       bodyTexture,
-    roughness: 0.50,
-    metalness: 0.02,
-  });
-  const matRimMat = new THREE.MeshStandardMaterial({
-    color:     0xd8d0b0,
-    roughness: 0.22,
-    metalness: 0.10,
-  });
-  const matBottom = new THREE.MeshStandardMaterial({
-    color:     0xe8e0c8,
-    roughness: 0.60,
-  });
-
-  // ── Background glow plane (sits behind the cup)
-  const glowCvs = document.createElement('canvas');
-  glowCvs.width = glowCvs.height = 512;
-  const gCtx = glowCvs.getContext('2d');
-  const grd  = gCtx.createRadialGradient(256, 256, 0, 256, 256, 256);
-  grd.addColorStop(0,    'rgba(255, 248, 210, 0.42)');
-  grd.addColorStop(0.30, 'rgba(230, 200, 130, 0.22)');
-  grd.addColorStop(0.65, 'rgba(160, 120,  55, 0.08)');
-  grd.addColorStop(1,    'rgba(0,     0,   0, 0)');
-  gCtx.fillStyle = grd;
-  gCtx.fillRect(0, 0, 512, 512);
-
-  const glowMesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(7.5, 7.5),
-    new THREE.MeshBasicMaterial({
-      map: new THREE.CanvasTexture(glowCvs),
-      transparent: true,
-      depthWrite: false,
-    })
-  );
-  glowMesh.position.z = -0.8;
-  scene.add(glowMesh);
-
-  // ── Cup group
-  const cup = new THREE.Group();
-  scene.add(cup);
-
-  // Body — tapered cylinder (wide top, narrow bottom), open ends so texture shows
-  const bodyGeo = new THREE.CylinderGeometry(1.0, 0.72, 2.6, 64, 1, true);
-  cup.add(new THREE.Mesh(bodyGeo, matBody));
-
-  // Bottom cap
-  const botGeo = new THREE.CircleGeometry(0.72, 64);
-  const bot    = new THREE.Mesh(botGeo, matBottom);
-  bot.rotation.x = -Math.PI / 2;
-  bot.position.y = -1.3;
-  cup.add(bot);
-
-  // Rolled rim — short outward-flare cylinder (not a torus, so no "handle" arc)
-  const rimCylGeo = new THREE.CylinderGeometry(1.09, 1.01, 0.14, 64, 1, true);
-  const rimCyl    = new THREE.Mesh(rimCylGeo, matRimMat);
-  rimCyl.position.y = 1.3;
-  cup.add(rimCyl);
-
-  // Rim top flat ring
-  const rimCapGeo = new THREE.RingGeometry(1.01, 1.09, 64);
-  const rimCap    = new THREE.Mesh(rimCapGeo, matRimMat);
-  rimCap.rotation.x = -Math.PI / 2;
-  rimCap.position.y  = 1.37;
-  cup.add(rimCap);
-
-  // ── Leaf texture factory (canvas-drawn, two colour families)
-  function makeLeafTex(fill) {
-    const c   = document.createElement('canvas');
-    c.width   = c.height = 128;
-    const cx  = c.getContext('2d');
-    cx.clearRect(0, 0, 128, 128);
-    // Leaf body
-    cx.fillStyle = fill;
-    cx.beginPath();
-    cx.moveTo(64, 6);
-    cx.bezierCurveTo(106, 16, 112, 72, 64, 120);
-    cx.bezierCurveTo(16, 72, 22, 16, 64, 6);
-    cx.closePath();
-    cx.fill();
-    // Midrib vein
-    cx.strokeStyle = 'rgba(255,255,255,0.18)';
-    cx.lineWidth = 2.5;
-    cx.beginPath();
-    cx.moveTo(64, 10);
-    cx.lineTo(64, 116);
-    cx.stroke();
-    return new THREE.CanvasTexture(c);
-  }
-
-  // Mix of olive-green and wood-brown leaves
-  const leafPalette = [
-    '#6a7f32', '#5c6e2e', '#7a9040',   // greens
-    '#a0784a', '#b88848', '#c9975f',   // wood / amber
-  ];
-  const leafTextures = leafPalette.map(makeLeafTex);
-
-  // ── Leaf particles
-  const leaves = [];
-  for (let i = 0; i < 20; i++) {
-    const tex  = leafTextures[Math.floor(Math.random() * leafTextures.length)];
-    const w    = 0.13 + Math.random() * 0.14;
-    const leaf = new THREE.Mesh(
-      new THREE.PlaneGeometry(w, w * 1.65),
-      new THREE.MeshBasicMaterial({
-        map: tex, transparent: true,
-        opacity: 0.65 + Math.random() * 0.30,
-        depthWrite: false,
-        side: THREE.DoubleSide,
-      })
-    );
-    const angle  = Math.random() * Math.PI * 2;
-    const radius = 1.3 + Math.random() * 1.6;
-    leaf.position.set(
-      Math.cos(angle) * radius,
-      -1.6 + Math.random() * 3.2,
-      Math.sin(angle) * radius - 0.3,
-    );
-    leaf.rotation.set(
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2,
-    );
-    leaf.userData = {
-      angle,
-      radius,
-      orbitSpeed: (0.002 + Math.random() * 0.004) * (Math.random() < 0.5 ? 1 : -1),
-      riseSpeed:  0.0025 + Math.random() * 0.004,
-      yMin: -1.8,
-      yMax:  2.0,
-      rotZ: (Math.random() - 0.5) * 0.022,
-      rotX: (Math.random() - 0.5) * 0.012,
-    };
-    scene.add(leaf);
-    leaves.push(leaf);
-  }
-
-  // ── Mouse parallax — track cursor to tilt cup
-  let mouseX = 0, mouseY = 0;
-  const heroSection = document.getElementById('home');
-  if (heroSection) {
-    heroSection.addEventListener('mousemove', e => {
-      const rect = heroSection.getBoundingClientRect();
-      mouseX = ((e.clientX - rect.left) / rect.width  - 0.5) * 2; // -1 → 1
-      mouseY = ((e.clientY - rect.top)  / rect.height - 0.5) * 2; // -1 → 1
-    });
-    heroSection.addEventListener('mouseleave', () => {
-      mouseX = 0;
-      mouseY = 0;
-    });
-  }
-
-  // ── Spring easing for entrance (easeOutBack — overshoots slightly then settles)
-  function easeOutBack(t) {
-    const c1 = 1.70158, c3 = c1 + 1;
-    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
-  }
-
-  // Entrance state
-  const ENTRANCE_DUR = 1.3; // seconds
-  let   entranceT    = 0;
-  cup.position.y     = -5;   // start below viewport
-  cup.scale.setScalar(0.25); // start small
-
-  // Smooth rotation targets — offset by PI so the textured face looks at the camera
-  let rotX = 0.10, rotY = Math.PI - 0.35;
-  let floatT = 0;
-
-  // ── Animate
-  function animate() {
-    requestAnimationFrame(animate);
-    floatT += 0.016;
-
-    // Spring entrance for the first ENTRANCE_DUR seconds
-    if (entranceT < 1) {
-      entranceT = Math.min(entranceT + 0.016 / ENTRANCE_DUR, 1);
-      const e = easeOutBack(entranceT);
-      cup.scale.setScalar(0.25 + 0.75 * e);
-      cup.position.y = -5 + 5 * e + Math.sin(floatT) * 0.04;
-    } else {
-      // Normal float — rests at centre of canvas
-      cup.position.y = 0.0 + Math.sin(floatT) * 0.07;
-    }
-
-    // Target: base tilt + subtle mouse parallax (kept small so text stays visible)
-    const tgtX =  0.10 - mouseY * 0.10;
-    const tgtY = Math.PI - 0.35 + mouseX * 0.14;
-
-    // Smooth lerp toward target
-    rotX += (tgtX - rotX) * 0.06;
-    rotY += (tgtY - rotY) * 0.06;
-
-    cup.rotation.x = rotX;
-    cup.rotation.y = rotY;
-
-    // Leaf particles — orbit, drift upward, tumble
-    leaves.forEach(l => {
-      l.userData.angle += l.userData.orbitSpeed;
-      l.position.x  = Math.cos(l.userData.angle) * l.userData.radius;
-      l.position.z  = Math.sin(l.userData.angle) * l.userData.radius - 0.3;
-      l.position.y += l.userData.riseSpeed;
-      if (l.position.y > l.userData.yMax) l.position.y = l.userData.yMin;
-      l.rotation.z += l.userData.rotZ;
-      l.rotation.x += l.userData.rotX;
-      // Gentle fade as they rise
-      l.material.opacity = 0.35 + Math.abs(Math.sin(l.userData.angle * 1.5)) * 0.55;
-    });
-
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  // ── Resize
-  function onResize() {
-    W = wrap.clientWidth;
-    H = wrap.clientHeight;
-    camera.aspect = W / H;
-    camera.updateProjectionMatrix();
-    renderer.setSize(W, H);
-  }
-  window.addEventListener('resize', onResize);
-}
-
-/* ──────────────────────────────────────────────────────
    5.  COUNT-UP ANIMATION (IntersectionObserver)
 ────────────────────────────────────────────────────── */
 function initCountUp() {
@@ -630,24 +372,75 @@ function initCountUp() {
    6.  CONTACT FORM (Formspree)
 ────────────────────────────────────────────────────── */
 function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const btn  = document.getElementById('form-btn');
+  const form   = document.getElementById('contact-form');
+  const btn    = document.getElementById('form-btn');
+  const status = document.getElementById('form-status');
   if (!form || !btn) return;
+
+  const nameEl  = form.querySelector('#f-name');
+  const emailEl = form.querySelector('#f-email');
+  const msgEl   = form.querySelector('#f-msg');
+  const honeypot = form.querySelector('[name="_gotcha"]');
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setFieldError(input, errorId, message) {
+    const errorEl = document.getElementById(errorId);
+    if (message) {
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', errorId);
+      if (errorEl) { errorEl.textContent = message; errorEl.hidden = false; }
+    } else {
+      input.classList.remove('is-invalid');
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+      if (errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
+    }
+  }
+
+  function validate() {
+    const dict = T[currentLang];
+    let firstInvalid = null;
+
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const message = msgEl.value.trim();
+
+    setFieldError(nameEl, 'f-name-error', name ? '' : dict.err_name);
+    if (!name) firstInvalid = firstInvalid || nameEl;
+
+    const emailValid = email && EMAIL_RE.test(email);
+    setFieldError(emailEl, 'f-email-error', emailValid ? '' : dict.err_email);
+    if (!emailValid) firstInvalid = firstInvalid || emailEl;
+
+    setFieldError(msgEl, 'f-msg-error', message ? '' : dict.err_msg);
+    if (!message) firstInvalid = firstInvalid || msgEl;
+
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    // Basic validation
-    const name    = form.querySelector('#f-name').value.trim();
-    const email   = form.querySelector('#f-email').value.trim();
-    const message = form.querySelector('#f-msg').value.trim();
-    if (!name || !email || !message) return;
+    if (!validate()) return;
 
-    const btnLabel = btn.querySelector('[data-key="form_btn"]');
-    const origText = btnLabel ? btnLabel.textContent : btn.textContent;
+    const dict      = T[currentLang];
+    const btnLabel  = btn.querySelector('[data-key="form_btn"]');
+    const origText  = btnLabel ? btnLabel.textContent : btn.textContent;
+
+    // Honeypot filled → almost certainly a bot. Fake a normal success without
+    // submitting, so bots don't learn the field is being checked.
+    if (honeypot && honeypot.value) {
+      form.reset();
+      if (status) status.textContent = dict.sent_ok;
+      return;
+    }
 
     btn.disabled = true;
     if (btnLabel) btnLabel.textContent = '…';
+    if (status) status.textContent = '';
 
     try {
       const res = await fetch(form.action, {
@@ -658,7 +451,8 @@ function initContactForm() {
 
       if (res.ok) {
         form.reset();
-        if (btnLabel) btnLabel.textContent = currentLang === 'sq' ? 'U dërgua ✓' : 'Sent ✓';
+        if (btnLabel) btnLabel.textContent = dict.form_btn_sent;
+        if (status) status.textContent = dict.sent_ok;
         setTimeout(() => {
           btn.disabled = false;
           if (btnLabel) btnLabel.textContent = origText;
@@ -667,7 +461,8 @@ function initContactForm() {
         throw new Error('Server error');
       }
     } catch {
-      if (btnLabel) btnLabel.textContent = currentLang === 'sq' ? 'Gabim — riprovo' : 'Error — try again';
+      if (btnLabel) btnLabel.textContent = dict.form_btn_err;
+      if (status) status.textContent = dict.sent_err;
       btn.disabled = false;
     }
   });
@@ -679,6 +474,13 @@ function initContactForm() {
 function initStickyNav() {
   const nav = document.getElementById('navbar');
   if (!nav) return;
+
+  // Pages with no dark hero (e.g. privacy.html) should always show the
+  // solid "scrolled" nav style, since there's nothing for it to overlay.
+  if (!document.getElementById('home')) {
+    nav.classList.add('scrolled');
+    return;
+  }
 
   function onScroll() {
     nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -729,7 +531,6 @@ function initHamburger() {
 /* ──────────────────────────────────────────────────────
    9.  PRODUCT MODAL
 ────────────────────────────────────────────────────── */
-// SVG markup pulled from each card's .cup-mockup
 function initProductModal() {
   const modal    = document.getElementById('product-modal');
   const backdrop = document.getElementById('modal-backdrop');
@@ -754,7 +555,7 @@ function initProductModal() {
     // Show the same product image as the clicked card
     const modalSvg = document.getElementById('modal-svg');
     const photo    = card.querySelector('.prod-photo');
-    const imgSrc   = photo?.getAttribute('src') || '';
+    const imgSrc   = photo?.getAttribute('data-full') || photo?.getAttribute('src') || '';
     const imgAlt   = photo?.alt || dict[meta.nameKey] || 'Product photo';
 
     modalSvg.innerHTML = imgSrc

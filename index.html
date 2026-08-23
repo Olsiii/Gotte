@@ -157,8 +157,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet" />
 
-  <!-- Tabler Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <!-- Tabler Icons — pinned version + SRI (never load @latest from a CDN unpinned) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"
+    integrity="sha384-PwEnNZvp50/uDLtKrd1s2D4Xe/y+fCVtEigigjik/PgHlDXUF1uJ32m7guk/XWYV"
+    crossorigin="anonymous"
+  />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
@@ -248,8 +253,8 @@
   <!-- ═══════════════════════════════════════
        CLIENTS STRIP
   ═══════════════════════════════════════ -->
-  <div class="clients-wrapper" aria-label="Our clients">
-    <span class="clients-label">Trusted by</span>
+  <div class="clients-wrapper" data-key-aria="clients_aria" aria-label="Our clients">
+    <span class="clients-label" data-key="clients_label">Trusted by</span>
     <div class="clients-scroll-row">
       <div class="clients-track" id="clients-track"></div>
     </div>
@@ -319,50 +324,50 @@
       <div class="products-grid" id="products-grid">
 
         <!-- Card 1 — S · 4 oz Classic White -->
-        <article class="prod-card" data-product="1" role="button" tabindex="0" aria-label="View Classic White details">
+        <article class="prod-card" data-product="1" role="button" tabindex="0" aria-labelledby="p1-name">
           <div class="prod-img-wrap prod-img-white">
-            <img src="images/size_S.jpg" alt="Classic White custom eco paper cup, 4 oz" class="prod-photo" width="100" height="100" loading="lazy" decoding="async" />
+            <img src="images/size_S_thumb.jpg" data-full="images/size_S.jpg" alt="Classic White custom eco paper cup, 4 oz" class="prod-photo" width="480" height="439" loading="lazy" decoding="async" />
           </div>
           <div class="prod-info">
             <span class="prod-size">S · 4 oz</span>
-            <h3 class="prod-name" data-key="p1_name">Classic White</h3>
+            <h3 class="prod-name" id="p1-name" data-key="p1_name">Classic White</h3>
             <p class="prod-desc" data-key="p1_desc">Single wall · eco-friendly</p>
           </div>
         </article>
 
         <!-- Card 2 — M · 8 oz Kraft Natural -->
-        <article class="prod-card" data-product="2" role="button" tabindex="0" aria-label="View Kraft Natural details">
+        <article class="prod-card" data-product="2" role="button" tabindex="0" aria-labelledby="p2-name">
           <div class="prod-img-wrap prod-img-kraft">
-            <img src="images/size_M.jpg" alt="Kraft Natural custom eco paper cup, 8 oz" class="prod-photo" width="100" height="100" loading="lazy" decoding="async" />
+            <img src="images/size_M_thumb.jpg" data-full="images/size_M.jpg" alt="Kraft Natural custom eco paper cup, 8 oz" class="prod-photo" width="480" height="439" loading="lazy" decoding="async" />
           </div>
           <div class="prod-info">
             <span class="prod-size">M · 8 oz</span>
-            <h3 class="prod-name" data-key="p2_name">Kraft Natural</h3>
+            <h3 class="prod-name" id="p2-name" data-key="p2_name">Kraft Natural</h3>
             <p class="prod-desc" data-key="p2_desc">Single wall · eco-friendly</p>
           </div>
         </article>
 
         <!-- Card 3 — L · 12 oz Signature Olive -->
-        <article class="prod-card" data-product="3" role="button" tabindex="0" aria-label="View Signature Olive details">
+        <article class="prod-card" data-product="3" role="button" tabindex="0" aria-labelledby="p3-name">
           <div class="prod-img-wrap prod-img-olive">
-            <img src="images/size_L.jpg" alt="Signature Olive double-wall eco paper cup, 12 oz" class="prod-photo" width="100" height="100" loading="lazy" decoding="async" />
+            <img src="images/size_L_thumb.jpg" data-full="images/size_L.jpg" alt="Signature Olive double-wall eco paper cup, 12 oz" class="prod-photo" width="480" height="439" loading="lazy" decoding="async" />
           </div>
           <div class="prod-info">
             <span class="prod-size">L · 12 oz</span>
-            <h3 class="prod-name" data-key="p3_name">Signature Olive</h3>
+            <h3 class="prod-name" id="p3-name" data-key="p3_name">Signature Olive</h3>
             <p class="prod-desc" data-key="p3_desc">Double wall · eco-friendly</p>
           </div>
         </article>
 
         <!-- Card 4 — XL · 16 oz Premium Dark (Best Seller) -->
-        <article class="prod-card prod-card--featured" data-product="4" role="button" tabindex="0" aria-label="View Premium Dark details">
+        <article class="prod-card prod-card--featured" data-product="4" role="button" tabindex="0" aria-labelledby="p4-name">
           <div class="prod-img-wrap prod-img-dark">
             <span class="prod-badge" data-key="bestseller">Best seller</span>
-            <img src="images/size_XL.jpg" alt="Premium Dark double-wall eco paper cup, 16 oz" class="prod-photo" width="100" height="100" loading="lazy" decoding="async" />
+            <img src="images/size_XL_thumb.jpg" data-full="images/size_XL.jpg" alt="Premium Dark double-wall eco paper cup, 16 oz" class="prod-photo" width="480" height="439" loading="lazy" decoding="async" />
           </div>
           <div class="prod-info">
             <span class="prod-size prod-size--wood">XL · 16 oz</span>
-            <h3 class="prod-name" data-key="p4_name">Premium Dark</h3>
+            <h3 class="prod-name" id="p4-name" data-key="p4_name">Premium Dark</h3>
             <p class="prod-desc" data-key="p4_desc">Double wall · eco-friendly</p>
           </div>
         </article>
@@ -412,6 +417,7 @@
 
           <form id="contact-form" action="https://formspree.io/f/xojbkbzn" method="POST" novalidate aria-label="Contact form">
             <div class="form-group">
+              <label class="sr-only" for="f-name" data-key="form_name">Your name</label>
               <input
                 type="text"
                 id="f-name"
@@ -422,8 +428,10 @@
                 data-placeholder-key="form_name"
                 placeholder="Your name"
               />
+              <p class="form-error" id="f-name-error" hidden></p>
             </div>
             <div class="form-group">
+              <label class="sr-only" for="f-email" data-key="form_email">Email address</label>
               <input
                 type="email"
                 id="f-email"
@@ -431,10 +439,13 @@
                 class="form-input"
                 required
                 autocomplete="email"
+                data-placeholder-key="form_email"
                 placeholder="Email address"
               />
+              <p class="form-error" id="f-email-error" hidden></p>
             </div>
             <div class="form-group">
+              <label class="sr-only" for="f-msg" data-key="form_msg">Tell us about your project...</label>
               <textarea
                 id="f-msg"
                 name="message"
@@ -444,10 +455,14 @@
                 data-placeholder-key="form_msg"
                 placeholder="Tell us about your project..."
               ></textarea>
+              <p class="form-error" id="f-msg-error" hidden></p>
             </div>
+            <!-- Honeypot — hidden from real users, catches simple bots. Formspree ignores submissions with this field filled. -->
+            <input type="text" name="_gotcha" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <button type="submit" class="btn btn-primary form-submit" id="form-btn">
               <span data-key="form_btn">Send message</span>
             </button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
 
@@ -469,6 +484,7 @@
       <span class="footer-copy" data-key="footer_copy">
         © 2026 gotte.eco · All rights reserved
       </span>
+      <a href="privacy.html" class="footer-legal-link" data-key="footer_privacy">Privacy Policy</a>
       <div class="footer-socials">
         <a href="https://www.instagram.com/gotte.eco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
         <a href="https://www.facebook.com/gotte.eco" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
