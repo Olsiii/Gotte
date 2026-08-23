@@ -275,6 +275,9 @@ function initLang() {
   const lang = params.get('lang') === 'sq' ? 'sq' : 'en';
   if (lang !== currentLang) applyLang(lang);
   else document.documentElement.lang = lang === 'sq' ? 'sq' : 'en';
+
+  document.getElementById('btn-en')?.addEventListener('click', () => switchLang('en'));
+  document.getElementById('btn-sq')?.addEventListener('click', () => switchLang('sq'));
 }
 
 /* ──────────────────────────────────────────────────────
