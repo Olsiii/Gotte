@@ -10,4 +10,10 @@
     <xhtml:link rel="alternate" hreflang="sq" href="https://gotte.eco/?lang=sq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gotte.eco/" />
   </url>
+  <url>
+    <loc>https://gotte.eco/privacy.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
 </urlset>
