@@ -71,13 +71,28 @@ const T = {
     form_email:    'Email address',
     form_msg:      'Tell us about your project...',
     form_btn:      'Send message',
-    form_btn_sent: 'Sent ✓',
-    form_btn_err:  'Error — try again',
     err_name:      'Please enter your name.',
     err_email:     'Please enter a valid email address.',
     err_msg:       'Please enter a message.',
-    sent_ok:       'Message sent — we\'ll be in touch soon.',
     sent_err:      'Something went wrong. Please try again or email us directly.',
+
+    quote_product_label: 'Product you\'re interested in',
+    quote_product_any:   'Not sure yet',
+    quote_product_1:     'Classic White — S · 4 oz',
+    quote_product_2:     'Kraft Natural — M · 8 oz',
+    quote_product_3:     'Signature Olive — L · 12 oz',
+    quote_product_4:     'Premium Dark — XL · 16 oz',
+    quote_qty_label:       'Estimated quantity',
+    quote_qty_placeholder: 'e.g. 500, 1000, 5000+',
+    quote_file_label:      'Attach your logo or artwork (optional)',
+    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, or SVG — up to 10MB',
+    quote_file_err_size:   'That file is too large — please keep it under 10MB.',
+    form_success_title: 'Message sent!',
+    form_success_body:  'Thanks — we\'ll get back to you within 1 business day.',
+    form_success_again: 'Send another message',
+
+    catalog_cta: 'Download full catalog (PDF)',
+    modal_quote_cta: 'Request a quote for this size',
 
     footer_copy:    '© 2026 gotte.eco · All rights reserved',
     footer_privacy: 'Privacy Policy',
@@ -170,13 +185,28 @@ const T = {
     form_email:    'Adresa e emailit',
     form_msg:      'Na tregoni për projektin tuaj...',
     form_btn:      'Dërgo mesazhin',
-    form_btn_sent: 'U dërgua ✓',
-    form_btn_err:  'Gabim — riprovo',
     err_name:      'Ju lutem shënoni emrin tuaj.',
     err_email:     'Ju lutem shënoni një adresë email të vlefshme.',
     err_msg:       'Ju lutem shkruani një mesazh.',
-    sent_ok:       'Mesazhi u dërgua — do t\'ju kontaktojmë së shpejti.',
     sent_err:      'Diçka shkoi keq. Ju lutem provoni përsëri ose na shkruani direkt.',
+
+    quote_product_label: 'Produkti që ju intereson',
+    quote_product_any:   'Nuk jam i sigurt ende',
+    quote_product_1:     'Klasike e Bardhë — S · 4 oz',
+    quote_product_2:     'Kraft Natyrale — M · 8 oz',
+    quote_product_3:     'Signature Olive — L · 12 oz',
+    quote_product_4:     'Premium Dark — XL · 16 oz',
+    quote_qty_label:       'Sasia e përafërt',
+    quote_qty_placeholder: 'p.sh. 500, 1000, 5000+',
+    quote_file_label:      'Bashkangjitni logon ose materialin tuaj (opsionale)',
+    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, ose SVG — deri në 10MB',
+    quote_file_err_size:   'Skedari është shumë i madh — ju lutem mbajeni nën 10MB.',
+    form_success_title: 'Mesazhi u dërgua!',
+    form_success_body:  'Faleminderit — do t\'ju kontaktojmë brenda 1 dite pune.',
+    form_success_again: 'Dërgo një mesazh tjetër',
+
+    catalog_cta: 'Shkarko katalogun e plotë (PDF)',
+    modal_quote_cta: 'Kërko ofertë për këtë madhësi',
 
     footer_copy:    '© 2026 gotte.eco · Të gjitha të drejtat e rezervuara',
     footer_privacy: 'Politika e Privatësisë',
@@ -404,17 +434,27 @@ function initCountUp() {
    6.  CONTACT FORM (Formspree)
 ────────────────────────────────────────────────────── */
 function initContactForm() {
-  const form   = document.getElementById('contact-form');
-  const btn    = document.getElementById('form-btn');
-  const status = document.getElementById('form-status');
+  const form     = document.getElementById('contact-form');
+  const btn      = document.getElementById('form-btn');
+  const success  = document.getElementById('form-success');
+  const errBox   = document.getElementById('form-error-banner');
+  const errText  = document.getElementById('form-error-banner-text');
+  const againBtn = document.getElementById('form-success-again');
   if (!form || !btn) return;
 
-  const nameEl  = form.querySelector('#f-name');
-  const emailEl = form.querySelector('#f-email');
-  const msgEl   = form.querySelector('#f-msg');
-  const honeypot = form.querySelector('[name="_gotcha"]');
+  const nameEl    = form.querySelector('#f-name');
+  const emailEl   = form.querySelector('#f-email');
+  const msgEl     = form.querySelector('#f-msg');
+  const fileEl    = form.querySelector('#f-file');
+  const subjectEl = form.querySelector('#f-subject');
+  const productEl = form.querySelector('#f-product');
+  const qtyEl     = form.querySelector('#f-qty');
+  const honeypot  = form.querySelector('[name="_gotcha"]');
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Keep in step with whatever file-size limit the Formspree plan allows —
+  // check the dashboard before raising this.
+  const MAX_FILE_BYTES = 10 * 1024 * 1024;
 
   function setFieldError(input, errorId, message) {
     const errorEl = document.getElementById(errorId);
@@ -449,30 +489,71 @@ function initContactForm() {
     setFieldError(msgEl, 'f-msg-error', message ? '' : dict.err_msg);
     if (!message) firstInvalid = firstInvalid || msgEl;
 
+    const file      = fileEl?.files?.[0];
+    const fileValid = !file || file.size <= MAX_FILE_BYTES;
+    if (fileEl) setFieldError(fileEl, 'f-file-error', fileValid ? '' : dict.quote_file_err_size);
+    if (!fileValid) firstInvalid = firstInvalid || fileEl;
+
     if (firstInvalid) firstInvalid.focus();
     return !firstInvalid;
   }
 
+  function hideErrorBanner() {
+    if (errBox) errBox.hidden = true;
+  }
+
+  function showErrorBanner(message) {
+    if (!errBox) return;
+    if (errText) errText.textContent = message;
+    errBox.hidden = false;
+  }
+
+  // Swap the whole form for a success panel on submit — a status line
+  // below a button is easy to miss; this isn't.
+  function showSuccess() {
+    form.hidden = true;
+    if (success) success.hidden = false;
+  }
+
+  function resetToForm() {
+    form.reset();
+    hideErrorBanner();
+    [[nameEl, 'f-name-error'], [emailEl, 'f-email-error'], [msgEl, 'f-msg-error'], [fileEl, 'f-file-error']]
+      .forEach(([el, id]) => el && setFieldError(el, id, ''));
+    const btnLabel = btn.querySelector('[data-key="form_btn"]');
+    if (btnLabel) btnLabel.textContent = T[currentLang].form_btn;
+    btn.disabled = false;
+    form.hidden = false;
+    if (success) success.hidden = true;
+    nameEl?.focus();
+  }
+
+  againBtn?.addEventListener('click', resetToForm);
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
+    hideErrorBanner();
     if (!validate()) return;
 
-    const dict      = T[currentLang];
-    const btnLabel  = btn.querySelector('[data-key="form_btn"]');
-    const origText  = btnLabel ? btnLabel.textContent : btn.textContent;
+    const dict     = T[currentLang];
+    const btnLabel = btn.querySelector('[data-key="form_btn"]');
 
-    // Honeypot filled → almost certainly a bot. Fake a normal success without
-    // submitting, so bots don't learn the field is being checked.
+    // Honeypot filled → almost certainly a bot. Fake a normal success
+    // without submitting, so bots don't learn the field is being checked.
     if (honeypot && honeypot.value) {
-      form.reset();
-      if (status) status.textContent = dict.sent_ok;
+      showSuccess();
       return;
+    }
+
+    // Distinguish quote requests from plain messages in the inbox.
+    if (subjectEl) {
+      const isQuote = (productEl && productEl.value) || (qtyEl && qtyEl.value.trim());
+      subjectEl.value = isQuote ? 'New quote request — gotte.eco' : 'New message — gotte.eco';
     }
 
     btn.disabled = true;
     if (btnLabel) btnLabel.textContent = '…';
-    if (status) status.textContent = '';
 
     try {
       const res = await fetch(form.action, {
@@ -482,20 +563,14 @@ function initContactForm() {
       });
 
       if (res.ok) {
-        form.reset();
-        if (btnLabel) btnLabel.textContent = dict.form_btn_sent;
-        if (status) status.textContent = dict.sent_ok;
-        setTimeout(() => {
-          btn.disabled = false;
-          if (btnLabel) btnLabel.textContent = origText;
-        }, 4000);
+        showSuccess();
       } else {
         throw new Error('Server error');
       }
     } catch {
-      if (btnLabel) btnLabel.textContent = dict.form_btn_err;
-      if (status) status.textContent = dict.sent_err;
+      showErrorBanner(dict.sent_err);
       btn.disabled = false;
+      if (btnLabel) btnLabel.textContent = dict.form_btn;
     }
   });
 }
@@ -583,12 +658,24 @@ function initProductModal() {
     4: { sizeKey: 'XL · 16 oz', nameKey: 'p4_name', wallKey: 'p4_desc', descKey: 'p4_long', bgClass: 'prod-img-dark' },
   };
 
+  // Matches the option values in the contact form's product <select> —
+  // stable English identifiers so the submitted value stays readable in
+  // the recipient's inbox no matter which UI language was active.
+  const quoteOptionValue = {
+    1: 'Classic White — S · 4 oz',
+    2: 'Kraft Natural — M · 8 oz',
+    3: 'Signature Olive — L · 12 oz',
+    4: 'Premium Dark — XL · 16 oz',
+  };
+  let openProductId = null;
+
   function openModal(card) {
     const id   = parseInt(card.dataset.product, 10);
     const meta = prodMeta[id];
     if (!meta) return;
 
     lastTrigger = card;
+    openProductId = id;
 
     const dict = T[currentLang];
 
@@ -637,6 +724,21 @@ function initProductModal() {
   backdrop.addEventListener('click', closeModal);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+
+  // "Request a quote for this size" — forwards the size to the contact
+  // form's Product field (no price shown anywhere) and lets the visitor
+  // just fill in a quantity and send it.
+  const quoteBtn = document.getElementById('modal-quote-btn');
+  quoteBtn?.addEventListener('click', () => {
+    const productSelect = document.getElementById('f-product');
+    const qtyInput       = document.getElementById('f-qty');
+    if (productSelect && openProductId && quoteOptionValue[openProductId]) {
+      productSelect.value = quoteOptionValue[openProductId];
+    }
+    closeModal();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => qtyInput?.focus(), 400);
   });
 }
 

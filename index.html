@@ -320,6 +320,10 @@
       <div class="section-header">
         <span class="section-label" data-key="prod_label">Our products</span>
         <h2 id="products-heading" class="section-title" data-key="prod_title">Custom cups for every occasion</h2>
+        <a href="files/gotte-catalog.pdf" download class="btn btn-ghost prod-catalog-btn">
+          <i class="ti ti-download" aria-hidden="true"></i>
+          <span data-key="catalog_cta">Download full catalog (PDF)</span>
+        </a>
       </div>
 
       <div class="products-carousel-wrap">
@@ -417,7 +421,10 @@
         <div class="contact-form-block">
           <h3 class="contact-sub" data-key="form_title">Send us a message</h3>
 
-          <form id="contact-form" action="https://formspree.io/f/xojbkbzn" method="POST" novalidate aria-label="Contact form">
+          <form id="contact-form" action="https://formspree.io/f/xojbkbzn" method="POST" novalidate aria-label="Contact form" enctype="multipart/form-data">
+            <!-- Set by JS before submit: "New quote request" when product/quantity is filled, otherwise "New message". -->
+            <input type="hidden" name="_subject" id="f-subject" value="New message — gotte.eco" />
+
             <div class="form-group">
               <label class="sr-only" for="f-name" data-key="form_name">Your name</label>
               <input
@@ -446,6 +453,32 @@
               />
               <p class="form-error" id="f-email-error" hidden></p>
             </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="sr-only" for="f-product" data-key="quote_product_label">Product you're interested in</label>
+                <select id="f-product" name="product" class="form-input">
+                  <option value="" data-key="quote_product_any">Not sure yet</option>
+                  <option value="Classic White — S · 4 oz" data-key="quote_product_1">Classic White — S · 4 oz</option>
+                  <option value="Kraft Natural — M · 8 oz" data-key="quote_product_2">Kraft Natural — M · 8 oz</option>
+                  <option value="Signature Olive — L · 12 oz" data-key="quote_product_3">Signature Olive — L · 12 oz</option>
+                  <option value="Premium Dark — XL · 16 oz" data-key="quote_product_4">Premium Dark — XL · 16 oz</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="f-qty" data-key="quote_qty_label">Estimated quantity</label>
+                <input
+                  type="text"
+                  id="f-qty"
+                  name="quantity"
+                  class="form-input"
+                  inputmode="numeric"
+                  data-placeholder-key="quote_qty_placeholder"
+                  placeholder="e.g. 500, 1000, 5000+"
+                />
+              </div>
+            </div>
+
             <div class="form-group">
               <label class="sr-only" for="f-msg" data-key="form_msg">Tell us about your project...</label>
               <textarea
@@ -459,13 +492,39 @@
               ></textarea>
               <p class="form-error" id="f-msg-error" hidden></p>
             </div>
+
+            <div class="form-group">
+              <label class="form-file-label" for="f-file" data-key="quote_file_label">Attach your logo or artwork (optional)</label>
+              <input
+                type="file"
+                id="f-file"
+                name="attachment"
+                class="form-file-input"
+                accept=".png,.jpg,.jpeg,.pdf,.ai,.eps,.svg,image/*,application/pdf"
+              />
+              <p class="form-file-hint" data-key="quote_file_hint">PNG, JPG, PDF, AI, EPS, or SVG — up to 10MB</p>
+              <p class="form-error" id="f-file-error" hidden></p>
+            </div>
+
             <!-- Honeypot — hidden from real users, catches simple bots. Formspree ignores submissions with this field filled. -->
             <input type="text" name="_gotcha" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
             <button type="submit" class="btn btn-primary form-submit" id="form-btn">
               <span data-key="form_btn">Send message</span>
             </button>
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+            <div class="form-error-banner" id="form-error-banner" role="alert" hidden>
+              <i class="ti ti-alert-circle" aria-hidden="true"></i>
+              <span id="form-error-banner-text"></span>
+            </div>
           </form>
+
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden>
+            <i class="ti ti-circle-check form-success-icon" aria-hidden="true"></i>
+            <h4 class="form-success-title" data-key="form_success_title">Message sent!</h4>
+            <p class="form-success-body" data-key="form_success_body">Thanks — we'll get back to you within 1 business day.</p>
+            <button type="button" class="btn btn-ghost" id="form-success-again" data-key="form_success_again">Send another message</button>
+          </div>
         </div>
 
         <div class="contact-map">
@@ -507,6 +566,7 @@
         <h3 class="prod-name" id="modal-prod-name"></h3>
         <p class="prod-modal-wall" id="modal-wall"></p>
         <p class="prod-modal-desc" id="modal-desc"></p>
+        <button type="button" class="btn btn-primary prod-modal-quote-btn" id="modal-quote-btn" data-key="modal_quote_cta">Request a quote for this size</button>
       </div>
     </div>
   </div>
