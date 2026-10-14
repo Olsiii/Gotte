@@ -1850,3 +1850,21 @@ body.menu-open .nav-backdrop {
   }
 }
 
+/* ── Reduced motion (global) ─────────────────────────────
+   Placed last so it wins the cascade over every animation
+   declared above, regardless of selector specificity. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-label,
+  .hero-title,
+  .hero-body,
+  .hero-actions,
+  .hero-img-wrap,
+  .marquee-track,
+  .clients-track,
+  .prod-modal-card {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+

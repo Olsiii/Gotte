@@ -40,7 +40,7 @@ Configured for Vercel specifically via `vercel.json` (zero-config static deploy,
 python3 -c "
 import re, hashlib, base64
 html = open('index.html', encoding='utf-8').read()
-m = re.search(r'<script type=\"application/ld\+json\">\n(.*?)\n  </script>', html, re.S)
+m = re.search(r'<script type=\"application/ld\+json\">(.*?)</script>', html, re.S)
 h = hashlib.sha256(m.group(1).encode('utf-8')).digest()
 print('sha256-' + base64.b64encode(h).decode())
 "

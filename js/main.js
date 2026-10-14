@@ -26,7 +26,7 @@ const T = {
     hero_cta2:  'See products ↓',
 
     about_label: 'About us',
-    about_title: 'Cups that tell your story —<br>without costing the earth.',
+    about_title: 'Cups that tell your story <br>without costing the earth.',
     about_p1:    'GOTTË is a new business specialized in the production of branded paper cups and paper bags using eco-friendly bio paper and water-based printing technology. We provide modern, high-quality packaging solutions for cafés, restaurants, events, and businesses looking for unique and sustainable branding.',
     about_p2:    'GOTTË continues the long-standing experience of Foto Gagi and Gagi Print, companies with many years of expertise in photo printing, professional printing, and branding services. With a strong commitment to quality, design, and customer satisfaction, our goal is to deliver functional, aesthetic, and environmentally friendly products for both the local and international market.',
 
@@ -46,16 +46,16 @@ const T = {
     prod_title: 'Custom cups for every occasion',
 
     p1_name: 'Classic White',
-    p1_desc: 'Single wall · 4 oz',
+    p1_desc: 'Single wall · eco-friendly',
     p1_long: 'A compact single-wall cup in a clean white finish. Ideal for espresso, macchiato, or short drinks. Lightweight and fully customisable with your brand logo and colours — perfect for cafés, events, and daily takeaway service.',
     p2_name: 'Kraft Natural',
-    p2_desc: 'Single wall · 8 oz',
+    p2_desc: 'Single wall · eco-friendly',
     p2_long: 'Our most versatile cup, crafted from natural kraft paper with a warm brown finish. Great for lattes, americanos, and cold beverages. The earthy tone pairs beautifully with any brand identity and prints crisp, vivid colours.',
     p3_name: 'Signature Olive',
-    p3_desc: 'Double wall · 12 oz',
+    p3_desc: 'Double wall · eco-friendly',
     p3_long: 'A double-wall cup in our signature olive finish — designed for long drinks and customers on the move. Extra insulation keeps beverages hot longer while keeping hands comfortable. Ideal for tea, flat whites, and specialty drinks.',
     p4_name: 'Premium Dark',
-    p4_desc: 'Double wall · 16 oz',
+    p4_desc: 'Double wall · eco-friendly',
     p4_long: 'Our flagship XL double-wall cup for bold brand statements. The sleek dark finish creates a premium look that elevates any brand. Perfect for large lattes, cold brews, and smoothies. Our best-selling size — and our customers\' favourite.',
 
     bestseller: 'Best seller',
@@ -221,8 +221,12 @@ function applyLang(lang) {
   currentLang = lang;
   document.documentElement.lang = lang === 'sq' ? 'sq' : 'en';
 
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.getElementById('btn-sq').classList.toggle('active', lang === 'sq');
+  const btnEn = document.getElementById('btn-en');
+  const btnSq = document.getElementById('btn-sq');
+  btnEn.classList.toggle('active', lang === 'en');
+  btnSq.classList.toggle('active', lang === 'sq');
+  btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+  btnSq.setAttribute('aria-pressed', String(lang === 'sq'));
 
   const dict = T[lang];
 
@@ -250,7 +254,24 @@ function applyLang(lang) {
     }
   });
 
+  syncInternalLinks(lang);
   buildMarquee();
+}
+
+// Keep cross-page links (footer "Privacy Policy", privacy.html's nav/back
+// links) carrying the active language, so switching language then
+// navigating doesn't silently drop you back into English.
+function syncInternalLinks(lang) {
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    // Matches the bare page link whether or not a previous switch already
+    // appended ?lang=sq, so repeated toggles keep updating it correctly.
+    const m = href && href.match(/^(privacy\.html|index\.html)(?:\?lang=sq)?(#[\w-]+)?$/);
+    if (!m) return;
+    const [, page, hash = ''] = m;
+    const query = lang === 'sq' ? '?lang=sq' : '';
+    a.setAttribute('href', page + query + hash);
+  });
 }
 
 function syncLangUrl(lang) {
@@ -337,12 +358,20 @@ function initCountUp() {
 
   const DURATION = 1800; // ms
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function animateCount(el) {
     if (el.dataset.animated) return;
     el.dataset.animated = '1';
 
     const target = parseFloat(el.dataset.target);
     const suffix = el.dataset.suffix || '';
+
+    if (reduceMotion) {
+      el.textContent = target + suffix;
+      return;
+    }
+
     const start  = performance.now();
 
     function step(now) {
@@ -540,6 +569,12 @@ function initProductModal() {
   const closeBtn = document.getElementById('modal-close');
   if (!modal) return;
 
+  // Everything outside the modal, so it can be made inert while open —
+  // keeps keyboard/AT focus from leaking into the page behind the dialog.
+  const outsideModal = [document.querySelector('header'), document.getElementById('main'), document.querySelector('.footer')]
+    .filter(Boolean);
+  let lastTrigger = null;
+
   // Map product IDs to their background class and size+name keys
   const prodMeta = {
     1: { sizeKey: 'S · 4 oz', nameKey: 'p1_name', wallKey: 'p1_desc', descKey: 'p1_long', bgClass: 'prod-img-white' },
@@ -552,6 +587,8 @@ function initProductModal() {
     const id   = parseInt(card.dataset.product, 10);
     const meta = prodMeta[id];
     if (!meta) return;
+
+    lastTrigger = card;
 
     const dict = T[currentLang];
 
@@ -575,12 +612,16 @@ function initProductModal() {
     // Show
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    outsideModal.forEach(el => { el.inert = true; });
     closeBtn.focus();
   }
 
   function closeModal() {
     modal.hidden = true;
     document.body.style.overflow = '';
+    outsideModal.forEach(el => { el.inert = false; });
+    lastTrigger?.focus();
+    lastTrigger = null;
   }
 
   // Attach click to each product card
