@@ -781,7 +781,28 @@ function initProductsCarousel() {
 }
 
 /* ──────────────────────────────────────────────────────
-   11. BOOT
+   11. CONTENT OVERRIDES (from the admin panel)
+   Admin edits are committed to content/overrides.json and served as a
+   plain static file — no API call needed to read it. Fetched after the
+   page renders with its hardcoded defaults, so a slow/offline fetch
+   never blocks anything; it just means the defaults stand a little
+   longer before any override swaps in.
+────────────────────────────────────────────────────── */
+async function loadContentOverrides() {
+  try {
+    const res = await fetch('content/overrides.json', { cache: 'no-store' });
+    if (!res.ok) return;
+    const overrides = await res.json();
+    if (overrides?.en && typeof overrides.en === 'object') Object.assign(T.en, overrides.en);
+    if (overrides?.sq && typeof overrides.sq === 'object') Object.assign(T.sq, overrides.sq);
+    applyLang(currentLang); // re-render now that overrides are merged in
+  } catch {
+    // No overrides file yet, or offline — the hardcoded defaults stand.
+  }
+}
+
+/* ──────────────────────────────────────────────────────
+   12. BOOT
 ────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initLang();
@@ -793,4 +814,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
   initProductModal();
   initProductsCarousel();
+  loadContentOverrides();
 });

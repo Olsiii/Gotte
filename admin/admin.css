@@ -1,0 +1,204 @@
+/* ═══════════════════════════════════════════════════════
+   gotte.eco — admin panel styles
+   Reuses css/styles.css's design tokens (colors, buttons, form
+   inputs) so this looks like part of the same site, not a bolt-on.
+═══════════════════════════════════════════════════════ */
+
+.admin-body {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.admin-shell {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Login ─────────────────────────────────────────── */
+.admin-login {
+  max-width: 320px;
+  margin: 10vh auto 0;
+  text-align: center;
+}
+
+.admin-logo {
+  width: 56px;
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.admin-login-title {
+  font-size: 1.4rem;
+  color: var(--bark);
+  margin-bottom: 1.5rem;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.admin-login-form .btn { justify-content: center; }
+
+/* ── Dashboard header & tabs ──────────────────────────*/
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-logo-sm { width: 36px; }
+
+.admin-header-title {
+  font-size: 1.2rem;
+  color: var(--bark);
+  flex: 1;
+}
+
+.admin-logout-btn {
+  padding: .5rem 1.2rem;
+  font-size: .85rem;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: .5rem;
+  border-bottom: 1.5px solid var(--cream-dark);
+  margin-bottom: 1.5rem;
+}
+
+.admin-tab {
+  padding: .7rem 1.2rem;
+  font-family: var(--ff-body);
+  font-size: .9rem;
+  color: var(--gray-600);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1.5px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.admin-tab:hover { color: var(--bark); }
+
+.admin-tab.active {
+  color: var(--olive-dim);
+  border-bottom-color: var(--olive-dim);
+}
+
+/* ── Submissions panel ────────────────────────────────*/
+.admin-card {
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+}
+
+.admin-card-title {
+  font-size: 1.1rem;
+  color: var(--bark);
+  margin-bottom: .6rem;
+}
+
+.admin-card-body {
+  color: var(--bark-soft);
+  font-size: .93rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+/* ── Content editor ───────────────────────────────────*/
+.admin-hint {
+  font-size: .85rem;
+  color: var(--gray-600);
+  margin-bottom: 1.3rem;
+}
+
+.admin-group {
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.admin-group legend {
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--olive-dim);
+  padding: 0 .4rem;
+}
+
+.admin-field-row {
+  padding: .7rem 0;
+  border-top: 1px solid var(--cream-dark);
+}
+.admin-field-row:first-of-type { border-top: none; padding-top: .2rem; }
+
+.admin-field-label {
+  display: block;
+  font-size: .82rem;
+  color: var(--bark-soft);
+  margin-bottom: .4rem;
+}
+
+.admin-field-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.admin-field-lang {
+  flex: 1 1 240px;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+}
+
+.admin-field-lang-tag {
+  flex-shrink: 0;
+  font-size: .7rem;
+  font-weight: 800;
+  color: var(--gray-400);
+  margin-top: .85rem;
+  width: 1.6rem;
+}
+
+.admin-field-input {
+  flex: 1;
+  min-width: 0;
+  padding: .55rem .7rem;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  background: var(--cream-dark);
+  font-family: var(--ff-body);
+  font-size: .88rem;
+  color: var(--bark);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.admin-field-input:focus {
+  border-color: var(--olive);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(92,110,46,.12);
+}
+textarea.admin-field-input { resize: vertical; }
+
+.admin-save-bar {
+  position: sticky;
+  bottom: 0;
+  background: var(--cream);
+  padding: 1rem 0;
+  border-top: 1.5px solid var(--cream-dark);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-status {
+  font-size: .85rem;
+  color: var(--bark-soft);
+}
+.admin-status-success { color: var(--olive-dim); }
+.admin-status-error { color: #c0392b; }

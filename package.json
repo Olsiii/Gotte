@@ -1,0 +1,8 @@
+{
+  "name": "gotte-eco",
+  "private": true,
+  "description": "gotte.eco — static marketing site, plus a small set of Vercel serverless functions under api/ for the admin content editor. No build step for the site itself; these functions have zero npm dependencies.",
+  "engines": {
+    "node": ">=18"
+  }
+}
