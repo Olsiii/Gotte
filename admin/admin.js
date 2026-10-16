@@ -18,7 +18,7 @@ const FIELD_GROUPS = [
   },
   {
     title: 'Hero',
-    keys: ['hero_sub', 'hero_title', 'hero_body', 'hero_cta1', 'hero_cta2'],
+    keys: ['hero_sub', 'hero_title', 'hero_body', 'hero_cta1', 'hero_cta2', 'hero_family'],
   },
   {
     title: 'About',
@@ -40,6 +40,9 @@ const FIELD_GROUPS = [
       'p2_name', 'p2_desc', 'p2_long',
       'p3_name', 'p3_desc', 'p3_long',
       'p4_name', 'p4_desc', 'p4_long',
+      'spec_capacity', 'spec_build', 'spec_single', 'spec_dims', 'spec_paper',
+      'spec_print', 'spec_print_val', 'spec_lining', 'spec_lining_val',
+      'modal_sizes_aria',
     ],
   },
   {
@@ -52,6 +55,7 @@ const FIELD_GROUPS = [
       'quote_product_1', 'quote_product_2', 'quote_product_3', 'quote_product_4',
       'quote_qty_label', 'quote_qty_placeholder',
       'quote_file_label', 'quote_file_hint', 'quote_file_err_size',
+      'quote_file_remove', 'preview_note', 'preview_aria', 'preview_unavailable',
       'form_success_title', 'form_success_body', 'form_success_again',
       'catalog_cta', 'modal_quote_cta',
     ],

@@ -19,23 +19,24 @@ const T = {
     nav_products: 'Products',
     nav_contact:  'Contact',
 
-    hero_sub:   'eco-friendly · custom printed',
-    hero_title: 'Your brand,<br>better for<br>the planet.',
-    hero_body:  'Custom printed paper cups that carry your logo — and your values. 100% eco-friendly and biodegradable.',
+    hero_sub:    'eco-friendly · custom printed',
+    hero_title:  'Your brand,<br>wrapped in <em>nature.</em>',
+    hero_body:   'Custom printed paper cups and bags that carry your logo — and your values. Printed with water-based inks, in any quantity.',
+    hero_family: '<span>One family</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Get a quote',
     hero_cta2:  'See products ↓',
 
     about_label: 'About us',
-    about_title: 'Cups that tell your story <br>without costing the earth.',
+    about_title: 'Cups that tell your story without costing the earth.',
     about_p1:    'GOTTË is a new business specialized in the production of branded paper cups and paper bags using eco-friendly bio paper and water-based printing technology. We provide modern, high-quality packaging solutions for cafés, restaurants, events, and businesses looking for unique and sustainable branding.',
     about_p2:    'GOTTË continues the long-standing experience of Foto Gagi and Gagi Print, companies with many years of expertise in photo printing, professional printing, and branding services. With a strong commitment to quality, design, and customer satisfaction, our goal is to deliver functional, aesthetic, and environmentally friendly products for both the local and international market.',
 
-    badge1: 'FSC Certified',
-    badge2: 'PLA Lined',
-    badge3: 'CO₂ Neutral',
-    badge4: 'Biodegradable',
+    badge1: 'Custom print',
+    badge2: 'Water-based inks',
+    badge3: 'Any quantity',
+    badge4: 'Made in Kosovo',
 
-    stat1_label: 'Compostable materials',
+    stat1_label: 'Cup sizes',
     stat2_label: 'Happy clients',
     stat3_label: 'Avg. turnaround',
 
@@ -46,17 +47,17 @@ const T = {
     prod_title: 'Custom cups for every occasion',
 
     p1_name: 'Classic White',
-    p1_desc: 'Single wall · eco-friendly',
+    p1_desc: 'Single wall · 118 ml',
     p1_long: 'A compact single-wall cup in a clean white finish. Ideal for espresso, macchiato, or short drinks. Lightweight and fully customisable with your brand logo and colours — perfect for cafés, events, and daily takeaway service.',
     p2_name: 'Kraft Natural',
-    p2_desc: 'Single wall · eco-friendly',
+    p2_desc: 'Single wall · 236 ml',
     p2_long: 'Our most versatile cup, crafted from natural kraft paper with a warm brown finish. Great for lattes, americanos, and cold beverages. The earthy tone pairs beautifully with any brand identity and prints crisp, vivid colours.',
     p3_name: 'Signature Olive',
-    p3_desc: 'Double wall · eco-friendly',
-    p3_long: 'A double-wall cup in our signature olive finish — designed for long drinks and customers on the move. Extra insulation keeps beverages hot longer while keeping hands comfortable. Ideal for tea, flat whites, and specialty drinks.',
+    p3_desc: 'Single wall · 355 ml',
+    p3_long: 'A tall 12 oz cup in our signature olive finish — designed for long drinks and customers on the move. A generous size for tea, flat whites, and specialty drinks.',
     p4_name: 'Premium Dark',
-    p4_desc: 'Double wall · eco-friendly',
-    p4_long: 'Our flagship XL double-wall cup for bold brand statements. The sleek dark finish creates a premium look that elevates any brand. Perfect for large lattes, cold brews, and smoothies. Our best-selling size — and our customers\' favourite.',
+    p4_desc: 'Single wall · 473 ml',
+    p4_long: 'Our flagship XL cup for bold brand statements. The sleek dark finish creates a premium look that elevates any brand. Perfect for large lattes, cold brews, and smoothies. Our best-selling size — and our customers\' favourite.',
 
     bestseller: 'Best seller',
 
@@ -64,7 +65,7 @@ const T = {
     ct_title:     'Let\'s create something together',
     ct_det_title: 'Contact details',
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
-    ct_hours:     'Mon – Fri · 9:00 – 18:00',
+    ct_hours:     'Mon – Fri · 10:00 – 18:00',
 
     form_title:    'Send us a message',
     form_name:     'Your name',
@@ -87,12 +88,26 @@ const T = {
     quote_file_label:      'Attach your logo or artwork (optional)',
     quote_file_hint:       'PNG, JPG, PDF, AI, EPS, or SVG — up to 10MB',
     quote_file_err_size:   'That file is too large — please keep it under 10MB.',
+    quote_file_remove:     'Remove',
+    preview_note:          'Preview on our Kraft Natural cup (M · 8 oz)',
+    preview_aria:          'Preview of your logo on a Kraft Natural cup',
+    preview_unavailable:   'Live preview works with PNG, JPG and SVG — we\'ll still receive your file.',
     form_success_title: 'Message sent!',
     form_success_body:  'Thanks — we\'ll get back to you within 1 business day.',
     form_success_again: 'Send another message',
 
     catalog_cta: 'Download full catalog (PDF)',
     modal_quote_cta: 'Request a quote for this size',
+    modal_sizes_aria: 'Choose a size',
+    spec_capacity:   'Capacity',
+    spec_build:      'Construction',
+    spec_print:      'Print',
+    spec_print_val:  'Your logo, water-based inks',
+    spec_lining:     'Lining',
+    spec_lining_val: 'PE coated',
+    spec_dims:       'Top Ø × height',
+    spec_paper:      'Paper weight',
+    spec_single:     'Single wall',
 
     footer_copy:    '© 2026 gotte.eco · All rights reserved',
     footer_privacy: 'Privacy Policy',
@@ -118,12 +133,12 @@ const T = {
     ticker: [
       { icon: 'ti-leaf',      text: 'Full Custom Print'   },
       { icon: 'ti-truck',     text: 'Fast Delivery'        },
-      { icon: 'ti-recycle',   text: '100% Biodegradable'   },
-      { icon: 'ti-certificate', text: 'FSC Certified'      },
+      { icon: 'ti-droplet',   text: 'Water-based Inks'     },
+      { icon: 'ti-cup',       text: '4 Cup Sizes'          },
       { icon: 'ti-palette',   text: 'Any Quantity'         },
-      { icon: 'ti-sun',       text: 'CO₂ Neutral'          },
+      { icon: 'ti-map-pin',   text: 'Made in Kosovo'       },
       { icon: 'ti-star',      text: '500+ Happy Clients'   },
-      { icon: 'ti-droplet',   text: 'PLA Lined'            },
+      { icon: 'ti-brush',     text: 'Your Logo, Every Cup' },
     ],
   },
 
@@ -133,9 +148,10 @@ const T = {
     nav_products: 'Produktet',
     nav_contact:  'Kontakti',
 
-    hero_sub:   'miqësor me natyrën · printim me porosi',
-    hero_title: 'Brendi juaj,<br>më mirë për<br>planetin.',
-    hero_body:  'Gota letre me printim të personalizuar që bartin logon tuaj — dhe vlerat tuaja. 100% miqësore me mjedisin dhe të biodegradueshme.',
+    hero_sub:    'miqësor me natyrën · printim me porosi',
+    hero_title:  'Brendi juaj,<br>i mbështjellë në <em>natyrë.</em>',
+    hero_body:   'Gota dhe qese letre me printim të personalizuar që bartin logon tuaj — dhe vlerat tuaja. Të printuara me ngjyra water-based, në çdo sasi.',
+    hero_family: '<span>Një familje</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Merr ofertë',
     hero_cta2:  'Shiko produktet ↓',
 
@@ -144,12 +160,12 @@ const T = {
     about_p1:    'GOTTË është biznes i ri i specializuar në prodhimin e gotave dhe qeseve të letrës me brendim profesional, duke përdorur ngjyra water-based dhe materiale bio të përshtatshme për ambientin. Ne ofrojmë zgjidhje moderne dhe cilësore për kafiteri, restorante, evente dhe biznese që kërkojnë identitet unik dhe produkte ekologjike.',
     about_p2:    'GOTTË është vazhdimësi e përvojës shumëvjeçare të Foto Gagi dhe Gagi Print në industrinë e foto printimit, shtypit dhe brendimit profesional. Me përkushtim ndaj cilësisë, dizajnit dhe korrektësisë, synimi ynë është të sjellim produkte funksionale, estetike dhe miqësore me mjedisin për tregun vendor dhe më gjerë.',
 
-    badge1: 'Certifikuar FSC',
-    badge2: 'Vija PLA',
-    badge3: 'Neutral CO₂',
-    badge4: 'E biodegradueshme',
+    badge1: 'Printim me porosi',
+    badge2: 'Ngjyra water-based',
+    badge3: 'Çdo sasi',
+    badge4: 'Prodhuar në Kosovë',
 
-    stat1_label: 'Materiale të kompostueshme',
+    stat1_label: 'Madhësi gotash',
     stat2_label: 'Klientë të kënaqur',
     stat3_label: 'Koha mesatare e dërgimit',
 
@@ -160,17 +176,17 @@ const T = {
     prod_title: 'Gota me porosi për çdo rast',
 
     p1_name: 'Klasike e Bardhë',
-    p1_desc: 'Mur i vetëm · 4 oz',
+    p1_desc: 'Mur i vetëm · 118 ml',
     p1_long: 'Gotë kompakte me mur të vetëm në ngjyrë të bardhë të pastër. Ideale për espresso, macchiato apo pije të shkurtra. E lehtë dhe plotësisht e personalizueshme me logon dhe ngjyrat e markës suaj — perfekte për kafene, evente dhe shërbim çdo ditë.',
     p2_name: 'Kraft Natyrale',
-    p2_desc: 'Mur i vetëm · 8 oz',
+    p2_desc: 'Mur i vetëm · 236 ml',
     p2_long: 'Gota jonë më e gjithanshme, e punuar nga letra kraft natyrale me ngjyrë kafe të ngrohtë. E shkëlqyer për latte, americano dhe pije të ftohta. Toni i tokës kombinohet bukur me çdo identitet marke dhe printon ngjyra të qarta dhe të gjalla.',
     p3_name: 'Signature Olive',
-    p3_desc: 'Mur i dyfishtë · 12 oz',
-    p3_long: 'Gotë me mur të dyfishtë në ngjyrën tonë karakteristike të ullirit — e dizajnuar për pije të gjata dhe klientë në lëvizje. Izolimi shtesë e mban pijen të ngrohtë më gjatë, duke e mbajtur dorën rehat. Ideale për çaj, flat white dhe pije speciale.',
+    p3_desc: 'Mur i vetëm · 355 ml',
+    p3_long: 'Gotë e gjatë 12 oz në ngjyrën tonë karakteristike të ullirit — e dizajnuar për pije të gjata dhe klientë në lëvizje. Madhësi bujare për çaj, flat white dhe pije speciale.',
     p4_name: 'Premium Dark',
-    p4_desc: 'Mur i dyfishtë · 16 oz',
-    p4_long: 'Gota jonë kryesore XL me mur të dyfishtë për deklarata të guximshme marke. Finishi elegant i errët krijon një pamje premium që ngre çdo markë. Perfekte për latte të mëdha, cold brew dhe smoothie. Madhësia jonë më e shitur — dhe e preferuara e klientëve.',
+    p4_desc: 'Mur i vetëm · 473 ml',
+    p4_long: 'Gota jonë kryesore XL për deklarata të guximshme marke. Finishi elegant i errët krijon një pamje premium që ngre çdo markë. Perfekte për latte të mëdha, cold brew dhe smoothie. Madhësia jonë më e shitur — dhe e preferuara e klientëve.',
 
     bestseller: 'Më e shitur',
 
@@ -178,7 +194,7 @@ const T = {
     ct_title:     'Le të krijojmë diçka së bashku',
     ct_det_title: 'Detajet e kontaktit',
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
-    ct_hours:     'Hëne – Shtunë · 9:00 – 18:00',
+    ct_hours:     'Hënë – Premte · 10:00 – 18:00',
 
     form_title:    'Na dërgoni mesazh',
     form_name:     'Emri juaj',
@@ -201,12 +217,26 @@ const T = {
     quote_file_label:      'Bashkangjitni logon ose materialin tuaj (opsionale)',
     quote_file_hint:       'PNG, JPG, PDF, AI, EPS, ose SVG — deri në 10MB',
     quote_file_err_size:   'Skedari është shumë i madh — ju lutem mbajeni nën 10MB.',
+    quote_file_remove:     'Hiqe',
+    preview_note:          'Parapamje në gotën tonë Kraft Natyrale (M · 8 oz)',
+    preview_aria:          'Parapamje e logos suaj në gotën Kraft Natyrale',
+    preview_unavailable:   'Parapamja funksionon me PNG, JPG dhe SVG — skedarin tuaj e marrim gjithsesi.',
     form_success_title: 'Mesazhi u dërgua!',
     form_success_body:  'Faleminderit — do t\'ju kontaktojmë brenda 1 dite pune.',
     form_success_again: 'Dërgo një mesazh tjetër',
 
     catalog_cta: 'Shkarko katalogun e plotë (PDF)',
     modal_quote_cta: 'Kërko ofertë për këtë madhësi',
+    modal_sizes_aria: 'Zgjidhni madhësinë',
+    spec_capacity:   'Kapaciteti',
+    spec_build:      'Ndërtimi',
+    spec_print:      'Printimi',
+    spec_print_val:  'Logoja juaj, ngjyra water-based',
+    spec_lining:     'Shtresa',
+    spec_lining_val: 'Shtresë PE',
+    spec_dims:       'Ø lart × lartësia',
+    spec_paper:      'Pesha e letrës',
+    spec_single:     'Mur i vetëm',
 
     footer_copy:    '© 2026 gotte.eco · Të gjitha të drejtat e rezervuara',
     footer_privacy: 'Politika e Privatësisë',
@@ -232,12 +262,12 @@ const T = {
     ticker: [
       { icon: 'ti-leaf',        text: 'Printim i Plotë'          },
       { icon: 'ti-truck',       text: 'Dërgesë e Shpejtë'        },
-      { icon: 'ti-recycle',     text: '100% e Biodegradueshme'   },
-      { icon: 'ti-certificate', text: 'Certifikuar FSC'           },
+      { icon: 'ti-droplet',     text: 'Ngjyra Water-based'        },
+      { icon: 'ti-cup',         text: '4 Madhësi Gotash'          },
       { icon: 'ti-palette',     text: 'Çdo Sasi'                  },
-      { icon: 'ti-sun',         text: 'Neutral CO₂'               },
+      { icon: 'ti-map-pin',     text: 'Prodhuar në Kosovë'        },
       { icon: 'ti-star',        text: '500+ Klientë të Kënaqur'  },
-      { icon: 'ti-droplet',     text: 'Vija PLA'                  },
+      { icon: 'ti-brush',       text: 'Logoja Juaj në Çdo Gotë'   },
     ],
   },
 };
@@ -286,6 +316,11 @@ function applyLang(lang) {
 
   syncInternalLinks(lang);
   buildMarquee();
+  // Re-label finished counters (e.g. "10 days" → "10 ditë")
+  document.querySelectorAll('.count-up[data-animated]').forEach(el => {
+    const suffix = (lang === 'sq' && el.dataset.suffixSq) || el.dataset.suffix || '';
+    el.textContent = el.dataset.target + suffix;
+  });
 }
 
 // Keep cross-page links (footer "Privacy Policy", privacy.html's nav/back
@@ -395,7 +430,7 @@ function initCountUp() {
     el.dataset.animated = '1';
 
     const target = parseFloat(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
+    const suffix = (currentLang === 'sq' && el.dataset.suffixSq) || el.dataset.suffix || '';
 
     if (reduceMotion) {
       el.textContent = target + suffix;
@@ -589,9 +624,15 @@ function initStickyNav() {
     return;
   }
 
+  const hero = document.getElementById('home');
   function onScroll() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const threshold = hero.offsetTop + hero.offsetHeight - nav.offsetHeight;
+    const past = window.scrollY >= threshold;
+    nav.classList.toggle('scrolled', past);
+    // While still over the hero, a dark glass bar keeps the links readable
+    nav.classList.toggle('over-hero', !past && window.scrollY > 40);
   }
+  window.addEventListener('resize', onScroll, { passive: true });
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // run once in case page loads scrolled
 }
@@ -644,18 +685,25 @@ function initProductModal() {
   const closeBtn = document.getElementById('modal-close');
   if (!modal) return;
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Everything outside the modal, so it can be made inert while open —
   // keeps keyboard/AT focus from leaking into the page behind the dialog.
   const outsideModal = [document.querySelector('header'), document.getElementById('main'), document.querySelector('.footer')]
     .filter(Boolean);
-  let lastTrigger = null;
 
-  // Map product IDs to their background class and size+name keys
+  const card    = modal.querySelector('.prod-modal-card');
+  const media   = document.getElementById('modal-media');
+  const photo   = document.getElementById('modal-photo');
+  const body    = document.getElementById('modal-body');
+  const sizeBtns = [...modal.querySelectorAll('.prod-modal-size-btn')];
+
   const prodMeta = {
-    1: { sizeKey: 'S · 4 oz', nameKey: 'p1_name', wallKey: 'p1_desc', descKey: 'p1_long', bgClass: 'prod-img-white' },
-    2: { sizeKey: 'M · 8 oz', nameKey: 'p2_name', wallKey: 'p2_desc', descKey: 'p2_long', bgClass: 'prod-img-kraft' },
-    3: { sizeKey: 'L · 12 oz', nameKey: 'p3_name', wallKey: 'p3_desc', descKey: 'p3_long', bgClass: 'prod-img-olive' },
-    4: { sizeKey: 'XL · 16 oz', nameKey: 'p4_name', wallKey: 'p4_desc', descKey: 'p4_long', bgClass: 'prod-img-dark' },
+    // Dimensions and paper weights from the supplier drawings (Nessco)
+    1: { size: 'S · 4 oz',   cap: '4 oz · 118 ml',  dims: 'Ø 61 × 61 mm',  paper: '220 g/m²', wall: 'spec_single', nameKey: 'p1_name', descKey: 'p1_long', tone: 'white' },
+    2: { size: 'M · 8 oz',   cap: '8 oz · 236 ml',  dims: 'Ø 80 × 93 mm',  paper: '280 g/m²', wall: 'spec_single', nameKey: 'p2_name', descKey: 'p2_long', tone: 'kraft' },
+    3: { size: 'L · 12 oz',  cap: '12 oz · 355 ml', dims: 'Ø 90 × 110 mm', paper: '280 g/m²', wall: 'spec_single', nameKey: 'p3_name', descKey: 'p3_long', tone: 'olive' },
+    4: { size: 'XL · 16 oz', cap: '16 oz · 473 ml', dims: 'Ø 90 × 130 mm', paper: '280 g/m²', wall: 'spec_single', nameKey: 'p4_name', descKey: 'p4_long', tone: 'dark' },
   };
 
   // Matches the option values in the contact form's product <select> —
@@ -667,64 +715,98 @@ function initProductModal() {
     3: 'Signature Olive — L · 12 oz',
     4: 'Premium Dark — XL · 16 oz',
   };
+
+  const cards = {};
+  document.querySelectorAll('.prod-card[data-product]').forEach(c => { cards[c.dataset.product] = c; });
+
+  let lastTrigger   = null;
   let openProductId = null;
+  let closeTimer    = null;
 
-  function openModal(card) {
-    const id   = parseInt(card.dataset.product, 10);
+  function fill(id) {
     const meta = prodMeta[id];
-    if (!meta) return;
-
-    lastTrigger = card;
-    openProductId = id;
-
     const dict = T[currentLang];
-
-    // Show the same product image as the clicked card
-    const modalSvg = document.getElementById('modal-svg');
-    const photo    = card.querySelector('.prod-photo');
-    const imgSrc   = photo?.getAttribute('data-full') || photo?.getAttribute('src') || '';
-    const imgAlt   = photo?.alt || dict[meta.nameKey] || 'Product photo';
-
-    modalSvg.innerHTML = imgSrc
-      ? `<img src="${imgSrc}" alt="${imgAlt}" class="prod-modal-photo" loading="lazy" decoding="async" />`
-      : '';
-    modalSvg.className = `prod-modal-svg prod-modal-svg--photo ${meta.bgClass}`;
-
-    // Fill text fields
-    document.getElementById('modal-size').textContent     = meta.sizeKey;
+    const src  = cards[id]?.querySelector('.prod-photo');
+    photo.src = src?.getAttribute('data-full') || src?.getAttribute('src') || '';
+    photo.alt = src?.alt || dict[meta.nameKey] || '';
+    media.dataset.tone = meta.tone;
+    document.getElementById('modal-count').textContent = `0${id} / 04`;
+    document.getElementById('modal-size').textContent      = meta.size;
     document.getElementById('modal-prod-name').textContent = dict[meta.nameKey] || '';
-    document.getElementById('modal-wall').textContent      = dict[meta.wallKey] || '';
     document.getElementById('modal-desc').textContent      = dict[meta.descKey] || '';
+    document.getElementById('modal-cap').textContent       = meta.cap;
+    document.getElementById('modal-build').textContent     = dict[meta.wall] || '';
+    document.getElementById('modal-dims').textContent      = meta.dims;
+    document.getElementById('modal-paper').textContent     = meta.paper;
+    sizeBtns.forEach(b => {
+      const on = Number(b.dataset.goto) === id;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    openProductId = id;
+  }
 
-    // Show
+  // Swap product inside the open dialog with a short crossfade
+  function goTo(id) {
+    if (!prodMeta[id] || id === openProductId) return;
+    if (reduceMotion) { fill(id); return; }
+    modal.classList.add('is-swapping');
+    setTimeout(() => {
+      fill(id);
+      requestAnimationFrame(() => modal.classList.remove('is-swapping'));
+    }, 180);
+  }
+
+  function openModal(trigger) {
+    const id = parseInt(trigger.dataset.product, 10);
+    if (!prodMeta[id]) return;
+    clearTimeout(closeTimer);
+    lastTrigger = trigger;
+    fill(id);
+    modal.classList.remove('is-closing', 'is-swapping');
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     outsideModal.forEach(el => { el.inert = true; });
+    card.scrollTop = 0;
     closeBtn.focus();
   }
 
   function closeModal() {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    outsideModal.forEach(el => { el.inert = false; });
-    lastTrigger?.focus();
-    lastTrigger = null;
+    if (modal.hidden || modal.classList.contains('is-closing')) return;
+    const finish = () => {
+      modal.hidden = true;
+      modal.classList.remove('is-closing');
+      document.body.style.overflow = '';
+      outsideModal.forEach(el => { el.inert = false; });
+      lastTrigger?.focus();
+      lastTrigger = null;
+    };
+    if (reduceMotion) { finish(); return; }
+    modal.classList.add('is-closing');
+    closeTimer = setTimeout(finish, 260);
   }
 
-  // Attach click to each product card
-  document.querySelectorAll('.prod-card[data-product]').forEach(card => {
-    card.addEventListener('click', () => openModal(card));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+  Object.values(cards).forEach(c => {
+    c.addEventListener('click', () => openModal(c));
+    c.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(c); }
     });
   });
 
-  // Close triggers
+  sizeBtns.forEach(b => b.addEventListener('click', () => goTo(Number(b.dataset.goto))));
+
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    if (modal.hidden) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') goTo(openProductId === 4 ? 1 : openProductId + 1);
+    if (e.key === 'ArrowLeft')  goTo(openProductId === 1 ? 4 : openProductId - 1);
   });
+
+  // Re-render the open product when the language changes
+  document.getElementById('btn-en')?.addEventListener('click', () => { if (!modal.hidden) fill(openProductId); });
+  document.getElementById('btn-sq')?.addEventListener('click', () => { if (!modal.hidden) fill(openProductId); });
 
   // "Request a quote for this size" — forwards the size to the contact
   // form's Product field (no price shown anywhere) and lets the visitor
@@ -732,13 +814,13 @@ function initProductModal() {
   const quoteBtn = document.getElementById('modal-quote-btn');
   quoteBtn?.addEventListener('click', () => {
     const productSelect = document.getElementById('f-product');
-    const qtyInput       = document.getElementById('f-qty');
+    const qtyInput      = document.getElementById('f-qty');
     if (productSelect && openProductId && quoteOptionValue[openProductId]) {
       productSelect.value = quoteOptionValue[openProductId];
     }
     closeModal();
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => qtyInput?.focus(), 400);
+    setTimeout(() => qtyInput?.focus({ preventScroll: true }), 600);
   });
 }
 
@@ -781,6 +863,217 @@ function initProductsCarousel() {
 }
 
 /* ──────────────────────────────────────────────────────
+   10b. MOTION — scroll reveals + gentle hero parallax
+   Classes are added from JS so the page is fully visible without it,
+   and nothing animates for visitors who prefer reduced motion.
+────────────────────────────────────────────────────── */
+function initReveals() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  const groups = [
+    '.about .section-label, .about .section-title, .about-p, .badge-row',
+    '.stat-card',
+    '.products .section-header > *',
+    '.prod-card',
+    '.contact .section-header > *',
+    '.contact-details-block, .contact-form-block, .contact-map',
+  ];
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('is-visible');
+      io.unobserve(el);
+      // Drop the reveal classes once done so hover transitions stay snappy
+      el.addEventListener('transitionend', function done(e) {
+        if (e.target !== el || e.propertyName !== 'opacity') return;
+        el.classList.remove('reveal', 'is-visible');
+        el.style.removeProperty('--reveal-delay');
+        el.removeEventListener('transitionend', done);
+      });
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+  groups.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      // Anything already on screen at load stays put
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', `${Math.min(i, 5) * 90}ms`);
+      io.observe(el);
+    });
+  });
+}
+
+function initHeroParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const img  = document.querySelector('.hero-photo');
+  const hero = document.getElementById('home');
+  if (!img || !hero) return;
+  const desktop = window.matchMedia('(min-width: 861px)');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    if (!desktop.matches) { img.style.removeProperty('--parallax'); return; }
+    const y = Math.min(window.scrollY, hero.offsetHeight);
+    img.style.setProperty('--parallax', `${(y * 0.08).toFixed(1)}px`);
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+}
+
+/* ──────────────────────────────────────────────────────
+   10c. LOGO UPLOAD — remove button + live preview on a cup
+   The uploaded logo is wrapped around a blank M · 8 oz kraft cup on a
+   <canvas>. Dark logos are "printed" with multiply (white backgrounds
+   drop out like real ink); light logos on transparent PNGs are drawn
+   normally so a white logo still shows on the kraft.
+────────────────────────────────────────────────────── */
+function initLogoPreview() {
+  const input   = document.getElementById('f-file');
+  const remove  = document.getElementById('f-file-remove');
+  const box     = document.getElementById('logo-preview');
+  const canvas  = document.getElementById('logo-preview-canvas');
+  const noPrev  = document.getElementById('logo-preview-unavailable');
+  const form    = document.getElementById('contact-form');
+  if (!input || !canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  // Region of the 800×732 cup photo shown in the canvas, and the cup's geometry there
+  const VIEW = { x: 140, y: 170, w: 520, h: 480 };
+  const CUP  = { cx: 412, cy: 426, halfW: 138, maxArc: 165, maxH: 150 };
+
+  const cup = new Image();
+  cup.src = 'images/cup_M_blank.jpg';
+  const cupReady = new Promise(res => { cup.onload = res; cup.onerror = res; });
+
+  let objectUrl = null;
+  let token = 0;
+
+  function reset() {
+    token++;
+    if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
+    box.hidden = true;
+    noPrev.hidden = true;
+    remove.hidden = !input.files?.length;
+  }
+
+  // Find the visible content of the logo (ignores transparent / white margins)
+  function analyse(img) {
+    const iw = img.naturalWidth || 600, ih = img.naturalHeight || 600;   // SVGs without a size
+    const s = Math.min(1, 300 / Math.max(iw, ih));
+    const w = Math.max(1, Math.round(iw * s));
+    const h = Math.max(1, Math.round(ih * s));
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    x.drawImage(img, 0, 0, w, h);
+    const d = x.getImageData(0, 0, w, h).data;
+    let transparent = 0, minX = w, minY = h, maxX = -1, maxY = -1, lum = 0, n = 0;
+    for (let i = 0, p = 0; i < d.length; i += 4, p++) {
+      const a = d[i + 3];
+      if (a < 250) transparent++;
+      const l = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+      const ink = a > 30 && (a < 250 || l < 235);   // opaque near-white counts as background
+      if (!ink) continue;
+      const px = p % w, py = (p / w) | 0;
+      if (px < minX) minX = px; if (px > maxX) maxX = px;
+      if (py < minY) minY = py; if (py > maxY) maxY = py;
+      lum += l; n++;
+    }
+    const hasAlpha = transparent > d.length / 4 * 0.02;
+    if (maxX < 0) { minX = 0; minY = 0; maxX = w - 1; maxY = h - 1; }
+    return {
+      sx: minX / s, sy: minY / s,
+      sw: (maxX - minX + 1) / s, sh: (maxY - minY + 1) / s,
+      lightOnClear: hasAlpha && n > 0 && lum / n > 170,
+    };
+  }
+
+  function draw(img) {
+    const a = analyse(img);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.translate(-VIEW.x, -VIEW.y);
+    ctx.drawImage(cup, 0, 0);
+
+    // Fit the logo into the print area (arc length × height)
+    const scale = Math.min(CUP.maxArc / a.sw, CUP.maxH / a.sh);
+    const arcW = a.sw * scale, h = a.sh * scale;
+    const top = CUP.cy - h / 2;
+    const r = CUP.halfW;
+
+    ctx.save();
+    ctx.globalCompositeOperation = a.lightOnClear ? 'source-over' : 'multiply';
+    ctx.globalAlpha = 0.94;
+    // Wrap around the cylinder: one 1px column at a time
+    const half = Math.sin(Math.min(arcW / 2 / r, 1.4)) * r;
+    for (let dx = -half; dx < half; dx += 1) {
+      const arc = Math.asin(Math.max(-1, Math.min(1, dx / r))) * r;
+      const u = (arc + arcW / 2) / arcW;
+      if (u < 0 || u > 1) continue;
+      const sx = a.sx + u * a.sw;
+      // columns compress toward the edges, so sample a matching slice width
+      const sliceW = Math.max(1, (a.sw / arcW) / Math.max(0.25, Math.cos(arc / r)));
+      ctx.drawImage(img, sx, a.sy, sliceW, a.sh, CUP.cx + dx, top, 1.25, h);
+    }
+    ctx.restore();
+
+    // Re-apply the cup's own light and shadow over the print
+    ctx.save();
+    ctx.globalCompositeOperation = 'multiply';
+    const g = ctx.createLinearGradient(CUP.cx - r, 0, CUP.cx + r, 0);
+    g.addColorStop(0,    'rgba(120,90,60,.55)');
+    g.addColorStop(0.18, 'rgba(255,255,255,0)');
+    g.addColorStop(0.75, 'rgba(255,255,255,0)');
+    g.addColorStop(1,    'rgba(120,90,60,.45)');
+    ctx.fillStyle = g;
+    ctx.fillRect(CUP.cx - half - 2, top - 2, half * 2 + 4, h + 4);
+    ctx.restore();
+  }
+
+  async function handle() {
+    reset();
+    const file = input.files?.[0];
+    if (!file) return;
+    remove.hidden = false;
+    const isImage = /^image\/(png|jpe?g|svg\+xml|webp|gif)$/.test(file.type) || /\.(png|jpe?g|svg|webp)$/i.test(file.name);
+    if (!isImage) { noPrev.hidden = false; return; }
+    if (file.size > 10 * 1024 * 1024) return;   // the size error already explains this
+
+    const my = ++token;
+    objectUrl = URL.createObjectURL(file);
+    const img = new Image();
+    img.decoding = 'async';
+    try {
+      img.src = objectUrl;
+      await img.decode();
+      await cupReady;
+      if (my !== token) return;
+      draw(img);
+      box.hidden = false;
+    } catch {
+      if (my === token) noPrev.hidden = false;
+    }
+  }
+
+  input.addEventListener('change', handle);
+  remove.addEventListener('click', () => {
+    input.value = '';
+    input.dispatchEvent(new Event('change'));
+    const err = document.getElementById('f-file-error');
+    if (err) { err.hidden = true; err.textContent = ''; }
+    input.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    input.focus();
+  });
+  form?.addEventListener('reset', () => setTimeout(handle, 0));
+}
+
+/* ──────────────────────────────────────────────────────
    11. CONTENT OVERRIDES (from the admin panel)
    Admin edits are committed to content/overrides.json and served as a
    plain static file — no API call needed to read it. Fetched after the
@@ -814,5 +1107,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
   initProductModal();
   initProductsCarousel();
+  initReveals();
+  initHeroParallax();
+  initLogoPreview();
   loadContentOverrides();
 });
