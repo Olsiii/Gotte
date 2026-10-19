@@ -149,7 +149,7 @@ const T = {
     nav_contact:  'Kontakti',
 
     hero_sub:    'miqësor me natyrën · printim me porosi',
-    hero_title:  'Gottë,<br>Identitet ne cdo <br><em>detaj.</em>',
+    hero_title:  'Identitet ne cdo <br><em>detaj.</em>',
     hero_body:   'Gota dhe qese letre me printim të personalizuar që bartin logon tuaj dhe vlerat tuaja. Të printuara me ngjyra me bazë uji, në çdo sasi.',
     hero_family: '<span>Një familje</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Merr ofertë',
