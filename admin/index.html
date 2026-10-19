@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin — gotte.eco</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" href="../images/gotte_logo.png" type="image/png" />
+  <link rel="icon" href="/images/gotte_logo.png" type="image/png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/admin/admin.css" />
 </head>
 <body class="admin-body">
 
@@ -20,7 +20,7 @@
 
     <!-- LOGIN -->
     <div id="login-view" class="admin-login">
-      <img src="../images/gotte_logo.png" alt="Gotte" class="admin-logo" />
+      <img src="/images/gotte_logo.png" alt="Gotte" class="admin-logo" />
       <h1 class="admin-login-title">Admin</h1>
       <form id="login-form" class="admin-login-form">
         <label class="sr-only" for="login-password">Password</label>
@@ -33,7 +33,7 @@
     <!-- DASHBOARD -->
     <div id="dashboard-view" hidden>
       <header class="admin-header">
-        <img src="../images/gotte_logo.png" alt="Gotte" class="admin-logo admin-logo-sm" />
+        <img src="/images/gotte_logo.png" alt="Gotte" class="admin-logo admin-logo-sm" />
         <h1 class="admin-header-title">Admin</h1>
         <button type="button" id="logout-btn" class="btn btn-ghost admin-logout-btn">Log out</button>
       </header>
@@ -47,20 +47,17 @@
         <div class="admin-card">
           <h2 class="admin-card-title">Quote &amp; contact submissions</h2>
           <p class="admin-card-body">
-            Submissions (including attached files) are handled by Formspree.
-            View, search, and export them from your Formspree dashboard:
+            Every contact form submission is emailed straight to your inbox,
+            with any attached logo or artwork included. Reply to the email
+            to answer the customer directly.
           </p>
-          <a href="https://formspree.io/forms" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Open Formspree dashboard ↗
-          </a>
         </div>
       </section>
 
       <section id="panel-content" class="admin-panel" hidden>
         <p class="admin-hint">
-          Leave a field blank to keep the site's default copy for it. Saving
-          commits to the site's repo and triggers a new deploy — changes go
-          live in about a minute, not instantly.
+          Leave a field blank to keep the site's default copy for it. Saved
+          changes go live within a few seconds.
         </p>
         <form id="content-form" class="admin-content-form"></form>
         <div class="admin-save-bar">
@@ -72,6 +69,6 @@
 
   </div>
 
-  <script src="admin.js"></script>
+  <script src="/admin/admin.js"></script>
 </body>
 </html>

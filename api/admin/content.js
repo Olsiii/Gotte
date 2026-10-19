@@ -1,7 +1,7 @@
 'use strict';
 
 const { isAuthenticated, readJsonBody } = require('../_lib/auth');
-const { readOverrides, writeOverrides } = require('../_lib/github');
+const { readOverrides, writeOverrides } = require('../_lib/store');
 
 module.exports = async (req, res) => {
   if (!isAuthenticated(req)) {
@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
 
   if (req.method === 'GET') {
     try {
-      const { sha, data } = await readOverrides();
-      return res.status(200).json({ sha, data });
+      const { version, data } = await readOverrides();
+      return res.status(200).json({ version, data });
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -31,8 +31,8 @@ module.exports = async (req, res) => {
     }
 
     try {
-      const { sha } = await writeOverrides(data, body.sha || null);
-      return res.status(200).json({ ok: true, sha });
+      const { version } = await writeOverrides(data, body.version);
+      return res.status(200).json({ ok: true, version });
     } catch (err) {
       return res.status(err.conflict ? 409 : 500).json({ error: err.message });
     }

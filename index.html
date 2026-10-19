@@ -222,7 +222,7 @@
         <span class="section-label hero-label" data-key="hero_sub">Eco-friendly · custom printed</span>
         <h1 id="hero-heading" class="hero-title" data-key="hero_title">Your brand,<br>wrapped in <em>nature.</em></h1>
         <p class="hero-body" data-key="hero_body">
-          Custom printed paper cups and bags that carry your logo — and your values. Printed with water-based inks, in any quantity.
+          Custom printed paper cups and bags that carry your logo and your values. Printed with water-based inks, in any quantity.
         </p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-light" data-key="hero_cta1">Get a quote</a>
@@ -412,7 +412,7 @@
             </li>
             <li>
               <i class="ti ti-clock" aria-hidden="true"></i>
-              <span data-key="ct_hours">Mon – Fri · 10:00 – 18:00</span>
+              <span data-key="ct_hours">Mon – Fri · 9:00 – 17:00</span>
             </li>
           </ul>
         </div>
@@ -420,10 +420,7 @@
         <div class="contact-form-block">
           <h3 class="contact-sub" data-key="form_title">Send us a message</h3>
 
-          <form id="contact-form" action="https://formspree.io/f/xojbkbzn" method="POST" novalidate aria-label="Contact form" enctype="multipart/form-data">
-            <!-- Set by JS before submit: "New quote request" when product/quantity is filled, otherwise "New message". -->
-            <input type="hidden" name="_subject" id="f-subject" value="New message — gotte.eco" />
-
+          <form id="contact-form" action="/api/contact" method="POST" novalidate aria-label="Contact form" enctype="multipart/form-data">
             <div class="form-group">
               <label class="sr-only" for="f-name" data-key="form_name">Your name</label>
               <input
@@ -507,7 +504,7 @@
                   <span data-key="quote_file_remove">Remove</span>
                 </button>
               </div>
-              <p class="form-file-hint" data-key="quote_file_hint">PNG, JPG, PDF, AI, EPS, or SVG — up to 10MB</p>
+              <p class="form-file-hint" data-key="quote_file_hint">PNG, JPG, PDF, AI, EPS, or SVG — up to 4MB</p>
               <p class="form-error" id="f-file-error" hidden></p>
 
               <!-- Live preview: the uploaded logo printed on the M · 8 oz kraft cup -->
@@ -518,7 +515,7 @@
               <p class="form-file-hint" id="logo-preview-unavailable" data-key="preview_unavailable" hidden>Live preview works with PNG, JPG and SVG — we'll still receive your file.</p>
             </div>
 
-            <!-- Honeypot — hidden from real users, catches simple bots. Formspree ignores submissions with this field filled. -->
+            <!-- Honeypot — hidden from real users, catches simple bots. The server drops submissions with this field filled. -->
             <input type="text" name="_gotcha" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <button type="submit" class="btn btn-primary form-submit" id="form-btn">

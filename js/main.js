@@ -3,7 +3,7 @@
    • EN / SQ language switcher
    • Marquee / ticker builder
    • Count-up on scroll (IntersectionObserver)
-   • Contact form (Formspree)
+   • Contact form (/api/contact → Resend)
    • Sticky nav + hamburger
 ═══════════════════════════════════════════════════════ */
 
@@ -27,7 +27,7 @@ const T = {
     hero_cta2:  'See products ↓',
 
     about_label: 'About us',
-    about_title: 'Cups that tell your story without costing the earth.',
+    about_title: 'Eco-friendly branding that saves the planet, not just your budget.',
     about_p1:    'GOTTË is a new business specialized in the production of branded paper cups and paper bags using eco-friendly bio paper and water-based printing technology. We provide modern, high-quality packaging solutions for cafés, restaurants, events, and businesses looking for unique and sustainable branding.',
     about_p2:    'GOTTË continues the long-standing experience of Foto Gagi and Gagi Print, companies with many years of expertise in photo printing, professional printing, and branding services. With a strong commitment to quality, design, and customer satisfaction, our goal is to deliver functional, aesthetic, and environmentally friendly products for both the local and international market.',
 
@@ -86,8 +86,8 @@ const T = {
     quote_qty_label:       'Estimated quantity',
     quote_qty_placeholder: 'e.g. 500, 1000, 5000+',
     quote_file_label:      'Attach your logo or artwork (optional)',
-    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, or SVG — up to 10MB',
-    quote_file_err_size:   'That file is too large — please keep it under 10MB.',
+    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, or SVG — up to 4MB',
+    quote_file_err_size:   'That file is too large — please keep it under 4MB.',
     quote_file_remove:     'Remove',
     preview_note:          'Preview on our Kraft Natural cup (M · 8 oz)',
     preview_aria:          'Preview of your logo on a Kraft Natural cup',
@@ -122,7 +122,7 @@ const T = {
     privacy_use_title:        'How we use it',
     privacy_use_body:         'We use the information you submit only to respond to your enquiry — for example, to give you a quote or answer a question about our products. We don\'t sell, rent, or share your information with third parties for marketing purposes.',
     privacy_thirdparty_title: 'Third-party services',
-    privacy_thirdparty_body:  'Our contact form is processed by Formspree, a third-party form service. This page also loads Google Fonts and embeds a Google Map, both of which may load resources from Google\'s servers.',
+    privacy_thirdparty_body:  'Messages from our contact form, including any file you attach, are delivered to our inbox by Resend, a third-party email service. This page also loads Google Fonts and embeds a Google Map, both of which may load resources from Google\'s servers.',
     privacy_retention_title:  'Data retention',
     privacy_retention_body:   'We keep contact form submissions only as long as needed to respond to your enquiry, unless you become a customer, in which case we retain what\'s needed for that business relationship.',
     privacy_rights_title:     'Your rights',
@@ -149,19 +149,19 @@ const T = {
     nav_contact:  'Kontakti',
 
     hero_sub:    'miqësor me natyrën · printim me porosi',
-    hero_title:  'Brendi juaj,<br>i mbështjellë në <em>natyrë.</em>',
-    hero_body:   'Gota dhe qese letre me printim të personalizuar që bartin logon tuaj — dhe vlerat tuaja. Të printuara me ngjyra water-based, në çdo sasi.',
+    hero_title:  'Gottë,<br>Identitet ne cdo <br><em>detaj</em>.',
+    hero_body:   'Gota dhe qese letre me printim të personalizuar që bartin logon tuaj dhe vlerat tuaja. Të printuara me ngjyra me bazë uji, në çdo sasi.',
     hero_family: '<span>Një familje</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Merr ofertë',
     hero_cta2:  'Shiko produktet ↓',
 
     about_label: 'Rreth nesh',
-    about_title: 'Gota që tregojnë historinë tuaj —<br>pa dëmtuar planetin.',
-    about_p1:    'GOTTË është biznes i ri i specializuar në prodhimin e gotave dhe qeseve të letrës me brendim profesional, duke përdorur ngjyra water-based dhe materiale bio të përshtatshme për ambientin. Ne ofrojmë zgjidhje moderne dhe cilësore për kafiteri, restorante, evente dhe biznese që kërkojnë identitet unik dhe produkte ekologjike.',
-    about_p2:    'GOTTË është vazhdimësi e përvojës shumëvjeçare të Foto Gagi dhe Gagi Print në industrinë e foto printimit, shtypit dhe brendimit profesional. Me përkushtim ndaj cilësisë, dizajnit dhe korrektësisë, synimi ynë është të sjellim produkte funksionale, estetike dhe miqësore me mjedisin për tregun vendor dhe më gjerë.',
+    about_title: 'Nga natyra per brendin tuaj.',
+    about_p1:    'Më shumë se një gotë. Më shumë se një qese. <br>Një identitet që shihet. Një cilësi që ndihet.<br><br>GOTTË sjell një qasje moderne në prodhimin dhe personalizimin e gotave dhe qeseve të letrës.<br><br>Ne besojmë se paketimi është pjesë e identitetit të çdo biznesi. Prandaj, çdo produkt që krijojmë bashkon funksionalitetin, dizajnin dhe kujdesin për natyrën.',
+    about_p2:    'Të mbështetur në përvojën shumëvjeçare të Foto Gagi dhe Gagi Print, ofrojmë zgjidhje profesionale për biznese që kërkojnë cilësi dhe origjinalitet. Nga bizneset e vogla deri te brendet e mëdha, synimi ynë mbetet i njëjtë:<br><br>Ta bëjmë brendin tuaj të dallohet në çdo detaj.',
 
     badge1: 'Printim me porosi',
-    badge2: 'Ngjyra water-based',
+    badge2: 'Ngjyra me bazë uji',
     badge3: 'Çdo sasi',
     badge4: 'Prodhuar në Kosovë',
 
@@ -194,7 +194,7 @@ const T = {
     ct_title:     'Le të krijojmë diçka së bashku',
     ct_det_title: 'Detajet e kontaktit',
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
-    ct_hours:     'Hënë – Premte · 10:00 – 18:00',
+    ct_hours:     'Hënë – Premte · 9:00 – 17:00',
 
     form_title:    'Na dërgoni mesazh',
     form_name:     'Emri juaj',
@@ -215,8 +215,8 @@ const T = {
     quote_qty_label:       'Sasia e përafërt',
     quote_qty_placeholder: 'p.sh. 500, 1000, 5000+',
     quote_file_label:      'Bashkangjitni logon ose materialin tuaj (opsionale)',
-    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, ose SVG — deri në 10MB',
-    quote_file_err_size:   'Skedari është shumë i madh — ju lutem mbajeni nën 10MB.',
+    quote_file_hint:       'PNG, JPG, PDF, AI, EPS, ose SVG — deri në 4MB',
+    quote_file_err_size:   'Skedari është shumë i madh — ju lutem mbajeni nën 4MB.',
     quote_file_remove:     'Hiqe',
     preview_note:          'Parapamje në gotën tonë Kraft Natyrale (M · 8 oz)',
     preview_aria:          'Parapamje e logos suaj në gotën Kraft Natyrale',
@@ -251,7 +251,7 @@ const T = {
     privacy_use_title:        'Si e përdorim',
     privacy_use_body:         'Informacionin që dërgoni e përdorim vetëm për t\'iu përgjigjur kërkesës suaj — për shembull, për t\'ju dhënë një ofertë ose për t\'iu përgjigjur një pyetjeje rreth produkteve tona. Nuk e shesim, japim me qira, apo ndajmë informacionin tuaj me palë të treta për qëllime marketingu.',
     privacy_thirdparty_title: 'Shërbimet e palëve të treta',
-    privacy_thirdparty_body:  'Formulari ynë i kontaktit përpunohet nga Formspree, një shërbim formularësh i palës së tretë. Kjo faqe gjithashtu ngarkon Google Fonts dhe përfshin një hartë të Google, të cilat mund të ngarkojnë burime nga serverët e Google.',
+    privacy_thirdparty_body:  'Mesazhet nga formulari ynë i kontaktit, përfshirë çdo skedar që bashkëngjitni, dërgohen në emailin tonë përmes Resend, një shërbim emaili i palës së tretë. Kjo faqe gjithashtu ngarkon Google Fonts dhe përfshin një hartë të Google, të cilat mund të ngarkojnë burime nga serverët e Google.',
     privacy_retention_title:  'Ruajtja e të dhënave',
     privacy_retention_body:   'I ruajmë mesazhet e formularit të kontaktit vetëm sa kohë që nevojitet për t\'iu përgjigjur kërkesës suaj, përveç nëse bëheni klient, në atë rast ruajmë atë që nevojitet për atë marrëdhënie biznesi.',
     privacy_rights_title:     'Të drejtat tuaja',
@@ -466,7 +466,7 @@ function initCountUp() {
 }
 
 /* ──────────────────────────────────────────────────────
-   6.  CONTACT FORM (Formspree)
+   6.  CONTACT FORM (/api/contact)
 ────────────────────────────────────────────────────── */
 function initContactForm() {
   const form     = document.getElementById('contact-form');
@@ -481,15 +481,12 @@ function initContactForm() {
   const emailEl   = form.querySelector('#f-email');
   const msgEl     = form.querySelector('#f-msg');
   const fileEl    = form.querySelector('#f-file');
-  const subjectEl = form.querySelector('#f-subject');
-  const productEl = form.querySelector('#f-product');
-  const qtyEl     = form.querySelector('#f-qty');
   const honeypot  = form.querySelector('[name="_gotcha"]');
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // Keep in step with whatever file-size limit the Formspree plan allows —
-  // check the dashboard before raising this.
-  const MAX_FILE_BYTES = 10 * 1024 * 1024;
+  // Keep in step with MAX_FILE_BYTES in api/contact.js (capped by
+  // Vercel's ~4.5MB request-body limit).
+  const MAX_FILE_BYTES = 4 * 1024 * 1024;
 
   function setFieldError(input, errorId, message) {
     const errorEl = document.getElementById(errorId);
@@ -579,12 +576,6 @@ function initContactForm() {
     if (honeypot && honeypot.value) {
       showSuccess();
       return;
-    }
-
-    // Distinguish quote requests from plain messages in the inbox.
-    if (subjectEl) {
-      const isQuote = (productEl && productEl.value) || (qtyEl && qtyEl.value.trim());
-      subjectEl.value = isQuote ? 'New quote request — gotte.eco' : 'New message — gotte.eco';
     }
 
     btn.disabled = true;
@@ -1075,22 +1066,22 @@ function initLogoPreview() {
 
 /* ──────────────────────────────────────────────────────
    11. CONTENT OVERRIDES (from the admin panel)
-   Admin edits are committed to content/overrides.json and served as a
-   plain static file — no API call needed to read it. Fetched after the
+   Admin edits are stored server-side and served by /api/content.
+   Fetched after the
    page renders with its hardcoded defaults, so a slow/offline fetch
    never blocks anything; it just means the defaults stand a little
    longer before any override swaps in.
 ────────────────────────────────────────────────────── */
 async function loadContentOverrides() {
   try {
-    const res = await fetch('content/overrides.json', { cache: 'no-store' });
+    const res = await fetch('/api/content');
     if (!res.ok) return;
     const overrides = await res.json();
     if (overrides?.en && typeof overrides.en === 'object') Object.assign(T.en, overrides.en);
     if (overrides?.sq && typeof overrides.sq === 'object') Object.assign(T.sq, overrides.sq);
     applyLang(currentLang); // re-render now that overrides are merged in
   } catch {
-    // No overrides file yet, or offline — the hardcoded defaults stand.
+    // No API (e.g. local static server) or offline — the hardcoded defaults stand.
   }
 }
 

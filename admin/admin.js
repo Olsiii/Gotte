@@ -1,7 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    gotte.eco — admin panel
-   Password-gated editor for site text (EN/SQ) and a pointer
-   to Formspree for viewing quote/contact submissions.
+   Password-gated editor for site text (EN/SQ).
 ═══════════════════════════════════════════════════════ */
 
 'use strict';
@@ -110,7 +109,7 @@ const contentForm   = document.getElementById('content-form');
 const contentStatus = document.getElementById('content-status');
 const contentSaveBtn = document.getElementById('content-save-btn');
 
-let currentSha = null;
+let currentVersion = 0;
 let contentLoaded = false;
 
 function show(view) {
@@ -231,7 +230,7 @@ async function loadContent() {
     const res = await fetch('/api/admin/content');
     if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || 'Failed to load content');
     const json = await res.json();
-    currentSha = json.sha;
+    currentVersion = json.version;
     buildContentForm(json.data || { en: {}, sq: {} });
     contentLoaded = true;
     contentStatus.textContent = '';
@@ -257,12 +256,12 @@ contentForm?.addEventListener('submit', async e => {
     const res = await fetch('/api/admin/content', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ data, sha: currentSha }),
+      body: JSON.stringify({ data, version: currentVersion }),
     });
     const json = await res.json();
     if (!res.ok) throw new Error(json.error || 'Save failed');
-    currentSha = json.sha;
-    contentStatus.textContent = 'Saved — the live site redeploys in about a minute.';
+    currentVersion = json.version;
+    contentStatus.textContent = 'Saved — live on the site within a few seconds.';
     contentStatus.className = 'admin-status admin-status-success';
   } catch (err) {
     contentStatus.textContent = err.message;

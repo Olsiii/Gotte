@@ -17,10 +17,8 @@ images/               Site images
   hero/                Reserved for additional/rotating hero images (currently empty)
 files/                 Drop downloadable assets here, e.g. gotte-catalog.pdf for the
                        "Download full catalog" button on the Products section
-content/overrides.json Site-text overrides saved by the admin panel — {} by default;
-                       served as-is to the live site, don't hand-edit unless you mean it
 admin/                 Password-gated admin UI (index.html + admin.js + admin.css)
-api/                   Vercel serverless functions backing the admin panel
+api/                   Vercel serverless functions: contact form (contact.js), site text (content.js), admin
 robots.txt, sitemap.xml   SEO (robots.txt also blocks /admin and /api from being crawled)
 ```
 
@@ -36,7 +34,7 @@ then open `http://localhost:8000/index.html`. (Opening the HTML file directly vi
 
 ## Deploying
 
-Static files only — upload the contents of this directory to any static host (e.g. Netlify, Vercel, GitHub Pages, or a plain web server) and point `gotte.eco` at it. No build command required.
+Deploy to Vercel (no build command). The pages are static, but the contact form and admin panel rely on the serverless functions in `api/`, so a plain static host won't run them.
 
 Configured for Vercel specifically via `vercel.json` (zero-config static deploy, plus security headers including a Content-Security-Policy) and `.vercelignore` (excludes `.vscode/` from the deployed output).
 
@@ -54,30 +52,48 @@ print('sha256-' + base64.b64encode(h).decode())
 
 ## Admin panel
 
-At `/admin`, password-gated, for editing the site's text (both languages) without touching code. It does **not** manage quote/contact submissions — those already have attachments, search, and export in your [Formspree dashboard](https://formspree.io/forms), so the admin panel just links there instead of duplicating it.
+At `/admin`, password-gated, for editing the site's text (both languages) without touching code. Contact/quote submissions aren't stored here — they arrive by email (see **Contact form** below).
 
-**How it works:** saving in the admin panel commits `content/overrides.json` straight to this repo via the GitHub API. Vercel is already watching this repo and redeploys on every push, so a save becomes a commit becomes a new deploy — the live site picks it up in about a minute, not instantly. The main site fetches that file as a plain static asset at boot and layers it over the hardcoded defaults in `js/main.js`'s `T` dictionary (a blank field in the admin just means "keep the default").
+**How it works:** saved text is stored in a small Upstash Redis database (free tier). The live site fetches it from `/api/content` at boot and layers it over the hardcoded defaults in `js/main.js`'s `T` dictionary (a blank field in the admin just means "keep the default"). Changes show up within about 10 seconds — no redeploy.
 
-**Required setup (in the Vercel project's dashboard → Settings → Environment Variables), before any of this works:**
+**Setup:**
 
-| Variable | What it's for | How to get one |
-|---|---|---|
-| `ADMIN_PASSWORD` | The password the `/admin` login form checks. | Pick one. There's only a single shared password — no per-user accounts. |
-| `ADMIN_SESSION_SECRET` | Signs the login session cookie. | A long random string: `openssl rand -hex 32` |
-| `GITHUB_TOKEN` | Lets the admin panel commit content changes to this repo. | A GitHub personal access token scoped to **this repo only**, with Contents: Read & write permission (fine-grained PAT) — ideally not a token with broader access than that. |
-| `GITHUB_REPO` | Which repo to commit to. | `owner/repo`, e.g. `olsisopi1/gotte` |
-| `GITHUB_BRANCH` | Which branch to commit to. | Defaults to `main` if unset |
+1. Vercel dashboard → your project → **Storage** → **Create Database** → **Upstash for Redis** (free plan) → connect it to this project. That sets `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically.
+2. Vercel dashboard → **Settings → Environment Variables**, add:
 
-Without `ADMIN_PASSWORD`/`ADMIN_SESSION_SECRET` set, `/admin` fails closed (nobody can log in) rather than silently allowing access. Without the `GITHUB_*` vars, login still works but saving content will fail with a clear error.
+| Variable | What it's for |
+|---|---|
+| `ADMIN_PASSWORD` | The password the `/admin` login form checks. Single shared password, no per-user accounts. |
+| `ADMIN_SESSION_SECRET` | Signs the login cookie. A long random string: `openssl rand -hex 32` |
 
-**Verification note:** the auth, session, and content-editing logic was tested end-to-end locally (login, wrong-password, session expiry, save, and the optimistic-concurrency conflict case all pass against the real route handlers) with the GitHub calls swapped for a local fake. The literal GitHub API request shape is written against their stable, long-documented Contents API, but hasn't been exercised against a real token/repo — worth a quick real save-and-check after you deploy and set the env vars above.
+3. Redeploy so the new variables take effect.
+
+Without `ADMIN_PASSWORD`/`ADMIN_SESSION_SECRET`, `/admin` fails closed (nobody can log in). Without the Redis database, login works but loading/saving text shows a "Storage is not connected" error, and the live site just keeps its defaults.
+
+The admin panel needs the `api/` functions, so it only works on Vercel (or `vercel dev`), not with `python3 -m http.server`.
 
 ## Contact form
 
-The form on the Contact section posts to Formspree (`https://formspree.io/f/xojbkbzn`). To change where submissions go, update the form's `action` in `index.html` and reconfigure the corresponding Formspree form.
+The form posts to `/api/contact`, which emails each submission — with the attached logo/artwork, if any — via [Resend](https://resend.com) (free tier: 3,000 emails/month). Replying to the email replies to the customer. Attachments are capped at 4MB because Vercel limits request bodies to ~4.5MB.
+
+**Setup:**
+
+1. Sign up at resend.com → **Domains** → add `gotte.eco` and add the DNS records it shows at your domain registrar. Wait for it to show "Verified".
+2. Resend → **API Keys** → create one.
+3. Vercel → **Settings → Environment Variables**, add:
+
+| Variable | Example |
+|---|---|
+| `RESEND_API_KEY` | `re_...` |
+| `CONTACT_TO` | `info@gotte.eco` (comma-separate for several inboxes) |
+| `CONTACT_FROM` | `GOTTË <quotes@gotte.eco>` — must be on the verified domain |
+
+4. Redeploy.
+
+Before the domain is verified you can leave `CONTACT_FROM` unset: it falls back to Resend's test sender, which can only deliver to the email address your Resend account was created with — handy for a first test.
 
 ## Language switching
 
 Content is translated client-side via the `T` dictionary in `js/main.js` (English/Albanian). Elements are tagged with `data-key` (text), `data-placeholder-key` (input placeholders), or `data-key-aria` (aria-labels) to opt into translation. The active language is reflected in the URL as `?lang=sq`.
 
-`T` holds the hardcoded defaults; `content/overrides.json` (editable from `/admin`, see **Admin panel** above) is layered on top of it at boot, key by key, so an edit there doesn't require a code change or touching `T` directly.
+`T` holds the hardcoded defaults; text saved from `/admin` (see **Admin panel** above) is layered on top of it at boot, key by key, so an edit there doesn't require a code change or touching `T` directly.
