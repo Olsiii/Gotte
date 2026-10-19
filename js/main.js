@@ -21,7 +21,7 @@ const T = {
 
     hero_sub:    'eco-friendly · custom printed',
     hero_title:  'Your brand,<br>wrapped in <em>nature.</em>',
-    hero_body:   'Custom printed paper cups and bags that carry your logo — and your values. Printed with water-based inks, in any quantity.',
+    hero_body:   'Custom printed paper cups and bags that carry your logo and your values. Printed with water-based inks, in any quantity.',
     hero_family: '<span>One family</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Get a quote',
     hero_cta2:  'See products ↓',
@@ -149,7 +149,7 @@ const T = {
     nav_contact:  'Kontakti',
 
     hero_sub:    'miqësor me natyrën · printim me porosi',
-    hero_title:  'Gottë,<br>Identitet ne cdo <br><em>detaj</em>.',
+    hero_title:  'Gottë,<br>Identitet ne cdo <br><em>detaj.</em>',
     hero_body:   'Gota dhe qese letre me printim të personalizuar që bartin logon tuaj dhe vlerat tuaja. Të printuara me ngjyra me bazë uji, në çdo sasi.',
     hero_family: '<span>Një familje</span> Foto Gagi · Gagi Print · Gottë',
     hero_cta1:  'Merr ofertë',
@@ -748,6 +748,21 @@ function initProductModal() {
     }, 180);
   }
 
+  // iOS Safari ignores overflow:hidden on <body>, so swipes inside the
+  // sheet scrolled the page behind it. Pinning the body in place is the
+  // lock that works everywhere; the scroll position is restored on close.
+  let lockedScrollY = 0;
+  function lockScroll() {
+    lockedScrollY = window.scrollY;
+    Object.assign(document.body.style, {
+      position: 'fixed', top: `-${lockedScrollY}px`, left: '0', right: '0', overflow: 'hidden',
+    });
+  }
+  function unlockScroll() {
+    Object.assign(document.body.style, { position: '', top: '', left: '', right: '', overflow: '' });
+    window.scrollTo({ top: lockedScrollY, behavior: 'instant' });
+  }
+
   function openModal(trigger) {
     const id = parseInt(trigger.dataset.product, 10);
     if (!prodMeta[id]) return;
@@ -756,7 +771,7 @@ function initProductModal() {
     fill(id);
     modal.classList.remove('is-closing', 'is-swapping');
     modal.hidden = false;
-    document.body.style.overflow = 'hidden';
+    lockScroll();
     outsideModal.forEach(el => { el.inert = true; });
     card.scrollTop = 0;
     closeBtn.focus();
@@ -767,7 +782,7 @@ function initProductModal() {
     const finish = () => {
       modal.hidden = true;
       modal.classList.remove('is-closing');
-      document.body.style.overflow = '';
+      unlockScroll();
       outsideModal.forEach(el => { el.inert = false; });
       lastTrigger?.focus();
       lastTrigger = null;

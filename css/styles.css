@@ -2016,6 +2016,7 @@ h1, h2, h3,
   position: relative;
   width: min(960px, 100%);
   height: min(660px, 92vh);
+  height: min(660px, 92dvh);
   display: grid;
   grid-template-columns: 1.05fr 1fr;
   background: var(--cream);
@@ -2198,12 +2199,24 @@ h1, h2, h3,
   .prod-modal-card {
     display: block;
     height: auto;
+    /* dvh = the screen actually visible with Safari's bars showing;
+       plain vh is taller, which pushed the sheet off-screen on iPhone. */
     max-height: 92vh;
+    max-height: 92dvh;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     border-radius: 22px 22px 0 0;
     animation-name: sheetIn;
   }
   .prod-modal.is-closing .prod-modal-card { animation-name: sheetOut; }
+  /* Stays pinned to the top corner while the sheet scrolls; the negative
+     bottom margin lets it overlap the photo instead of taking up a row. */
+  .prod-modal-close {
+    position: sticky;
+    top: 1rem;
+    margin: 1rem 1rem calc(-40px - 1rem) auto;
+  }
   .prod-modal-media { aspect-ratio: 4 / 3.4; }
   .prod-modal-photo { position: absolute; inset: 0; }
   .prod-modal-info { overflow: visible; padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom)); }
