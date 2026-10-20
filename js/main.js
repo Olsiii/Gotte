@@ -65,7 +65,7 @@ const T = {
     ct_title:     'Let\'s create something together',
     ct_det_title: 'Contact details',
     ct_address:   'Radovan Zogoviq, 25 - Arberi (Dragodan)<br>Prishtina, Kosovë',
-    ct_hours:     'Mon – Fri · 10:00 – 18:00',
+    ct_hours:     'Mon – Fri · 09:00 – 17:00',
 
     form_title:    'Send us a message',
     form_name:     'Your name',
